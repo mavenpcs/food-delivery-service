@@ -1,11 +1,12 @@
 version: '3'
 
 services:
+  
   react:
     container_name: react
     build:
       context: .
-      dockerfile: Dockerfile-devel
+      dockerfile: Dockerfile-react
     volumes:
       - /app
       - /app/node_modules
@@ -15,3 +16,12 @@ services:
       - CHOKIDAR_USEPOLLING=true
     stdin_open: true
     tty: true
+
+  express:
+    build:
+      context: .
+      dockerfile: Dockerfile-express
+    ports:
+      - 8080:8080
+    volumes:
+      - ./express:/code:rw

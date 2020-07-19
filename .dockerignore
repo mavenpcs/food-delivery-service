@@ -1,0 +1,5 @@
+/react/node_modules
+build
+.dockerignore
+Dockerfile-devel
+Dockerfile-web

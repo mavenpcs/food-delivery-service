@@ -1,13 +1,13 @@
 import React from 'react';
 import {Navbar} from "react-bootstrap";
-import logo from './images/logo.svg'
+import logo from '../images/logo.svg'
 
 
 class HeaderBar extends React.Component {
     render() {
         return (
         <Navbar bg="light" variant="light">
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
                 <img
                     alt=""
                     src={logo}

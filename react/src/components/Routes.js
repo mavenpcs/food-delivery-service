@@ -1,12 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Main from "./Main";
-import Restaurant from "./Restaurant";
-import App from "./App";
+import Restaurant from "../pages/Restaurant";
+import Main from "../pages/Main";
 
 const createRoutes = () => (
     <Router>
-        <Route exact path="/" component={App}/>
+        <Route exact path="/" component={Main}/>
         <Route path="/restaurants/:restaurant" component={Restaurant}/>
 
     </Router>

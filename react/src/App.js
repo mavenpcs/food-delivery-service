@@ -1,22 +1,23 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import {Container, Row, Col} from "react-bootstrap";
-import HeaderBar from './HeaderBar';
-import SearchBar from "./SearchBar";
-import Promotions from "./Promotions";
-
-import List from "./List"
-import {Router, Route, Switch, withRouter} from "react-router";
+import HeaderBar from './components/HeaderBar';
+import {Route} from "react-router";
 import {BrowserRouter} from "react-router-dom";
+import Main from "./pages/Main";
+import Restaurant from "./pages/Restaurant";
+import SearchBar from "./components/SearchBar";
 
 function App() {
     return (
         <div className="App">
             <HeaderBar/>
             <SearchBar/>
-            <Promotions/>
-            <List/>
+            <BrowserRouter >
+                <Route exact path="/" component={Main}/>
+                <Route path="/restaurants/:restaurant" component={Restaurant}/>
+
+            </BrowserRouter>
 
         </div>
     );

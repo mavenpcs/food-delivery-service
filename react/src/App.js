@@ -7,6 +7,7 @@ import {BrowserRouter} from "react-router-dom";
 import Main from "./pages/Main";
 import Restaurant from "./pages/Restaurant";
 import SearchBar from "./components/SearchBar";
+import Login from "./pages/Login";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
             <BrowserRouter >
                 <Route exact path="/" component={Main}/>
                 <Route path="/restaurants/:restaurant" component={Restaurant}/>
+                <Route exact path="/login" component={Login}/>
 
             </BrowserRouter>
 

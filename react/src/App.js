@@ -7,6 +7,7 @@ import {BrowserRouter} from "react-router-dom";
 import Main from "./pages/Main";
 import Restaurant from "./pages/Restaurant";
 import SearchBar from "./components/SearchBar";
+import OrderHistory from './pages/OrderHistory';
 
 function App() {
     return (
@@ -15,7 +16,8 @@ function App() {
             <SearchBar/>
             <BrowserRouter >
                 <Route exact path="/" component={Main}/>
-                <Route path="/restaurants/:restaurant" component={Restaurant}/>
+                <Route path="/restaurants/:restaurant" component={Restaurant} />
+                <Route exact path="/orderhistory" component={OrderHistory} />
 
             </BrowserRouter>
 

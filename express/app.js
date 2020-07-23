@@ -49,4 +49,45 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+const db = require('./app/models/index');
+const { sequelize } = require('./app/models/index');
+const Role = db.role;
+
+
+// For development
+db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(() => {
+  db.sequelize.sync({ force: true })
+  .then(() => {
+    db.sequelize.query('SET FOREIGN_KEY_CHECKS = 1')
+    .then(() => {
+      console.log('Drop and Resync DB');
+      initial();
+    }, (err) => {
+      console.log(err);
+    })
+  });
+}, (err) => {
+  console.log(err);
+});
+
+// db.sequelize.sync({ force: true }).then(() => {
+//   console.log('Drop and Resync DB');
+//   initial();
+// });
+
+// For production
+// db.sequelize.sync();
+
+function initial() {
+  Role.create({
+    id: 1,
+    name: 'customer'
+  });
+
+  Role.create({
+    id: 2,
+    name: 'vendor'
+  })
+}
+
 module.exports = app;

@@ -1,4 +1,4 @@
-const config = require('../config/db.config');
+const config = require('../../config/db.config');
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
@@ -7,6 +7,7 @@ const sequelize = new Sequelize(
     config.PASSWORD,
     {
         host: config.HOST,
+        define: config.define,
         dialect: config.dialect,
         opratorsAliases: false,
 
@@ -24,8 +25,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.appuser = require('../models/appuser.model')(sequelize, Sequelize);
-db.role = require('../models/role.model')(sequelize, Sequelize);
+db.appuser = require('../../models/appuser.model')(sequelize, Sequelize);
+db.role = require('../../models/role.model')(sequelize, Sequelize);
 
 db.role.belongsToMany(db.appuser, {
     through: 'user_roles',

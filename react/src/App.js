@@ -7,7 +7,9 @@ import {BrowserRouter} from "react-router-dom";
 import Main from "./pages/Main";
 import Restaurant from "./pages/Restaurant";
 import SearchBar from "./components/SearchBar";
-import OrderHistory from './pages/OrderHistory';
+// import Login from "./pages/Login";
+import Login from "./pages/Login"
+import Register from "./pages/Register";
 
 function App() {
     return (
@@ -17,7 +19,8 @@ function App() {
             <BrowserRouter >
                 <Route exact path="/" component={Main}/>
                 <Route path="/restaurants/:restaurant" component={Restaurant}/>
-                <Route exact path="/orderhistory" component={OrderHistory} />
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/register" component={Register}/>
 
             </BrowserRouter>
 

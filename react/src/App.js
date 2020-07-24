@@ -10,6 +10,7 @@ import SearchBar from "./components/SearchBar";
 // import Login from "./pages/Login";
 import Login from "./pages/Login"
 import Register from "./pages/Register";
+import OrderHistory from "./pages/OrderHistory";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/restaurants/:restaurant" component={Restaurant}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/register" component={Register}/>
+                <Route exact path="/orderhistory" component={OrderHistory}/>
 
             </BrowserRouter>
 

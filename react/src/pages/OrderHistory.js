@@ -1,7 +1,8 @@
 import React from 'react';
 import {withRouter} from "react-router";
-import {Card, CardColumns, Col, Form, Jumbotron, Row} from "react-bootstrap";
+import { Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row } from "react-bootstrap";
 import placeholderImage from "../images/placeholder.jpg"
+import FiletOFish from "../images/mcdonalds-filet-o-fish.jpg"
 
 // Place holder for now
 const foodMenu = [
@@ -33,6 +34,17 @@ const foodMenu = [
 ];
 
 class OrderHistory extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            show:false
+		}
+    }
+
+    handleModal() {
+        this.setState({ show: !this.state.show })
+	}
+
     render() {
         const { params } = this.props.match;
         return (
@@ -53,18 +65,29 @@ class OrderHistory extends React.Component {
                 <CardColumns>
                 {foodMenu.map((item, index) => (
                 <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={placeholderImage} />
+                        <Card.Img variant="top" src={FiletOFish} />
                     <Card.Body>
                         <Card.Title>{item.name}</Card.Title>
                         <Card.Text>
                             {item.description}
                         </Card.Text>
-                        <Card.Text>
-                            {item.price}
-                        </Card.Text>
                     </Card.Body>
-                    <Card.Body>
-                        <Card.Link href="#">Write Review</Card.Link>
+                        <Card.Body>
+                            <Button onClick={() => { this.handleModal() }}>Review</Button>
+                            <Modal
+                                show={this.state.show}
+                                onHide={() => this.handleModal()}
+                                backdrop="static"
+                                keyboard={false}
+                            >
+                            <Modal.Header closeButton>Write a Review</Modal.Header>
+                                <Modal.Body>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button onClick={() => { this.handleModal() }}>Cancel</Button>
+                                    <Button>Post</Button>
+                                </Modal.Footer>
+                            </Modal>
                     </Card.Body>
                 </Card>
                 ))}

@@ -16,7 +16,7 @@ function App() {
             <SearchBar/>
             <BrowserRouter >
                 <Route exact path="/" component={Main}/>
-                <Route path="/restaurants/:restaurant" component={Restaurant} />
+                <Route path="/restaurants/:restaurant" component={Restaurant}/>
                 <Route exact path="/orderhistory" component={OrderHistory} />
 
             </BrowserRouter>

@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import AuthService from "../services/auth.service";
+import {Link} from "react-router-dom";
 
 const required = value => {
     if (!value) {
@@ -81,7 +82,7 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div className="col-md-12">
+            <div className="w-25 p-3">
                 <div className="card card-container">
                     <img
                         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -131,6 +132,7 @@ export default class Login extends Component {
                             </button>
                         </div>
 
+
                         {this.state.message && (
                             <div className="form-group">
                                 <div className="alert alert-danger" role="alert">
@@ -139,12 +141,20 @@ export default class Login extends Component {
                             </div>
                         )}
                         <CheckButton
-                            style={{ display: "none" }}
+                            style={{display: "none"}}
                             ref={c => {
                                 this.checkBtn = c;
                             }}
                         />
                     </Form>
+                    <div className="form-group">
+                        <Link to="/register" className="btn btn-primary btn-block">
+                            {this.state.loading && (
+                                <span className="spinner-border spinner-border-sm"></span>
+                            )}
+                            <span>Register</span>
+                        </Link>
+                    </div>
                 </div>
             </div>
         );

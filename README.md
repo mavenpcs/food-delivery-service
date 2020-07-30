@@ -1,20 +1,18 @@
 # Run React from /react
-npm start (runs on localhost:3000)
+npm start (runs on localhost:8080)
 
 # Run Docker Container From the Root
 - Initial run: docker-compose build && docker-compose up
 - Onwards: docker-compose up
 
-- React: localhost:3001
-- Express: localhost:8080
-- MySql: localhost:3308
+- React: localhost:8080
+- Express: localhost:3000
 
-# Access the MySql Database in the Docker Container
+# Pages To Be Implemented
+The endpoints are currently non-existent, but will be implemented post the checkpoint.
+The schema for our MySQL database is currently in branch ‘peter_sql’ and will be merged to master.
 
-1. In your terminal, run "docker exec -it cmpt-470-project_mysql_1 bash"
-2. In your docker bash, run "mysql -uroot -pRoot12345 -h localhost"
-3. Run the following in sequence to check the sanity of our database.
-    - show databases;
-    - use food_delivery;
-    - show tables;
-    - describe app_user; (or any other field)
+Please check out the following pages via their link:
+- Login: localhost:8080/login
+- Register: localhost:8080/register
+- Order History: localhost:8080/orderhistory

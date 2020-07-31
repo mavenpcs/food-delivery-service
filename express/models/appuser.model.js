@@ -15,11 +15,11 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
-        first_name: {
+        firstname: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        last_name: {
+        lastname: {
             type: Sequelize.STRING,
             allowNull: false
         },
@@ -28,10 +28,6 @@ module.exports = (sequelize, Sequelize) => {
         },
         phone: {
             type: Sequelize.STRING
-        },
-        is_customer: {
-            type: Sequelize.TINYINT,
-            allowNull: false
         }
     });
 

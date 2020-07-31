@@ -11,8 +11,9 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+
 const corsOptions = {
-  origin: 'http://localhost:8080'
+  origin: 'http://localhost:3000'
 };
 
 // view engine setup
@@ -32,6 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,8 +52,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const db = require('./app/models/index');
-const { sequelize } = require('./app/models/index');
+const db = require('./models/index');
+const { sequelize } = require('./models/index');
 const Role = db.role;
 
 

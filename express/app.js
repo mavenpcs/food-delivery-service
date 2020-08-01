@@ -21,7 +21,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // parse requests of content-type: application/json
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors())
 
 // parse requests of content-type: application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));

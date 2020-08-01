@@ -4,12 +4,12 @@ USE food_delivery;
 
 CREATE TABLE IF NOT EXISTS `food_delivery`.`app_user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(15) NOT NULL,
-  `password` VARCHAR(15) NOT NULL,
-  `firstname` VARCHAR(50) NOT NULL,
-  `lastname` VARCHAR(50) NOT NULL,
-  `email` VARCHAR(50) NULL,
-  `phone` VARCHAR(10) NULL,
+  `username` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `firstname` VARCHAR(255) NOT NULL,
+  `lastname` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NULL,
+  `phone` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE);
 

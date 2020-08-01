@@ -7,6 +7,9 @@ WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
+# Set port to 8080
+ENV PORT 8080
+
 # install app dependencies
 COPY /react/package.json .
 RUN npm install -g

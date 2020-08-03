@@ -55,8 +55,7 @@ class List extends React.Component {
                 <div>
 
                     {list.map((item, index) => (
-
-                        <Card>
+                        <Card style={{margin: 1 + 'em'}}>
                             <Card.Body>
                                 <Link to={`/restaurants/${item.id}`}
                                       className="stretched-link">{item.name}</Link>
@@ -80,7 +79,9 @@ class List extends React.Component {
                             </Card.Body>
                         </Card>
 
+
                     ))}
+
                 </div>
             </Form>
         )

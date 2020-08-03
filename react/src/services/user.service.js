@@ -1,15 +1,11 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:8080/api/test/';
+const API_URL = 'http://localhost:3000/';
 
 class UserService {
     getPublicContent() {
         return axios.get(API_URL + 'all');
-    }
-
-    getCustomerBoard() {
-        return axios.get(API_URL + 'customer', { headers: authHeader() });
     }
 
     getVendorBoard() {
@@ -18,6 +14,14 @@ class UserService {
 
     getAdminBoard() {
         return axios.get(API_URL + 'admin', { headers: authHeader() });
+    }
+
+    getTestBoard() {
+        return true;
+    }
+
+    getCustomer() {
+        return axios.get(API_URL + 'orderHistory', { headers: authHeader() });
     }
 }
 

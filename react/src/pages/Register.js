@@ -51,12 +51,18 @@ export default class Register extends Component {
         super(props);
         this.handleRegister = this.handleRegister.bind(this);
         this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangeFirstname = this.onChangeFirstname.bind(this);
+        this.onChangeLastname = this.onChangeLastname.bind(this);
+        this.onChangePhone = this.onChangePhone.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
 
         this.state = {
             username: "",
             email: "",
+            firstname: "",
+            lastname: "",
+            phone: "",
             password: "",
             successful: false,
             message: ""
@@ -66,6 +72,24 @@ export default class Register extends Component {
     onChangeUsername(e) {
         this.setState({
             username: e.target.value
+        });
+    }
+
+    onChangeFirstname(e) {
+        this.setState({
+            firstname: e.target.value
+        });
+    }
+
+    onChangeLastname(e) {
+        this.setState({
+            lastname: e.target.value
+        });
+    }
+
+    onChangePhone(e) {
+        this.setState({
+            phone: e.target.value
         });
     }
 
@@ -94,14 +118,19 @@ export default class Register extends Component {
         if (this.checkBtn.context._errors.length === 0) {
             AuthService.register(
                 this.state.username,
+                this.state.password,
+                this.state.firstname,
+                this.state.lastname,
                 this.state.email,
-                this.state.password
+                this.state.phone
             ).then(
                 response => {
                     this.setState({
                         message: response.data.message,
                         successful: true
                     });
+                    this.props.history.push("/login");
+                    window.location.reload();
                 },
                 error => {
                     const resMessage =
@@ -151,6 +180,30 @@ export default class Register extends Component {
                                 </div>
 
                                 <div className="form-group">
+                                    <label htmlFor="firstname">First Name</label>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        name="firstname"
+                                        value={this.state.firstname}
+                                        onChange={this.onChangeFirstname}
+                                        validations={[required]}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="lastname">Last Name</label>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        name="lastname"
+                                        value={this.state.lastname}
+                                        onChange={this.onChangeLastname}
+                                        validations={[required]}
+                                    />
+                                </div>
+
+                                <div className="form-group">
                                     <label htmlFor="email">Email</label>
                                     <Input
                                         type="text"
@@ -159,6 +212,18 @@ export default class Register extends Component {
                                         value={this.state.email}
                                         onChange={this.onChangeEmail}
                                         validations={[required, email]}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="phone">Phone</label>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        name="username"
+                                        value={this.state.phone}
+                                        onChange={this.onChangePhone}
+                                        validations={[required]}
                                     />
                                 </div>
 

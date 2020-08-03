@@ -5,10 +5,10 @@ import List from "../components/List";
 
 function Main() {
     return (
-        <div>
-            <Promotions/>
+        <div class="container">
+            <Promotions />
+            <br/>
             <List/>
-
         </div>
     );
 }

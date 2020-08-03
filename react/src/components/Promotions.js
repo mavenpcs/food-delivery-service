@@ -5,7 +5,7 @@ import beefNoodle from "../images/IMG_20190427_033716_copy.jpg"
 class Promotions extends React.Component {
     render() {
         return (
-            <Carousel>
+            <Carousel class="mw-700">
                 <Carousel.Item>
                     <img
                         className="d-block w-100"

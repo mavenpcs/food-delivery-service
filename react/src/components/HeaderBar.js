@@ -1,6 +1,6 @@
 import React from 'react';
-import {Navbar} from "react-bootstrap";
-import logo from '../images/logo.svg'
+import { Navbar, Nav } from "react-bootstrap";
+import logo from '../images/DelishLogo.png'
 
 
 class HeaderBar extends React.Component {
@@ -11,12 +11,18 @@ class HeaderBar extends React.Component {
                 <img
                     alt=""
                     src={logo}
-                    width="100"
+                    width="80"
                     height="50"
                     className="d-inline-block align-top"
                 />{' '}
-                CMPT 470 Group 5 - Insert Website Name Here
+                DelishDelivery
             </Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Nav className="mr-auto">
+
+                    <Nav.Link href="/cart">View Cart</Nav.Link>
+                    
+                </Nav>
         </Navbar>
         )
     }

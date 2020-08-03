@@ -2,15 +2,15 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import HeaderBar from './components/HeaderBar';
-import {Redirect, Route} from "react-router";
+import {Route} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import Main from "./pages/Main";
 import Restaurant from "./pages/Restaurant";
-import SearchBar from "./components/SearchBar";
 import Login from "./pages/Login"
 import Register from "./pages/Register";
 import OrderHistory from "./pages/OrderHistory";
 import AuthService from "./services/auth.service"
+import MyMenu from "./pages/MyMenu";
 
 
 class App extends React.Component {
@@ -18,7 +18,9 @@ class App extends React.Component {
         super(props);
         this.state = {
             isLoggedIn: false,
-            isLoaded: false
+            isLoaded: false,
+            user: "",
+            isVendor: false
         }
     }
 
@@ -28,33 +30,47 @@ class App extends React.Component {
             console.log(user);
             this.setState({
                 isLoggedIn: true,
-                isLoaded: true
+                isLoaded: true,
+                user: user
             });
-        }
-        else {
+            if (user.roles) {
+                console.log("THIS IS A VENDOR")
+                this.setState({
+                    isVendor: true
+                })
+            }
+        } else {
             this.setState({
                 isLoggedIn: false,
                 isLoaded: true
             });
+            console.log("not logged in")
         }
     }
 
     render() {
-
+        const user = this.state
         return (
             <div className="App" align="center">
-                <HeaderBar/>
-                <SearchBar/>
+                <HeaderBar user={user}/>
                 <BrowserRouter>
                     <Route exact path="/" component={Main}/>
                     <Route path="/restaurants/:restaurant" component={Restaurant}/>
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register}/>
                     <Route exact path="/orderhistory" component={OrderHistory}/>
+                    <Route exact path="/myMenu" component={MyMenu}/>
                     {!this.state.isLoggedIn && this.state.isLoaded ? (
                         <Redirect to="/login"/>
                     ) : (
-                        <div></div>
+                        <div>
+                            {this.state.isVendor ? (
+                                <Redirect to={"/myMenu"}/>
+                            ) : (
+                                <Redirect to={"/"}/>
+                            )}
+
+                        </div>
                     )}
                 </BrowserRouter>
             </div>

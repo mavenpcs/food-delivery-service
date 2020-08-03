@@ -48,13 +48,39 @@ const list = [
 ];
 
 class List extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: ""
+        }
+
+        this.handleSearchInput = this.handleSearchInput.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            items: list
+        })
+    }
+
+    handleSearchInput(event) {
+        let searcjQery = event.target.value.toLowerCase(),
+            filteredItems = list.filter((el) => {
+                let searchValue = el.name.toLowerCase();
+                return searchValue.indexOf(searcjQery) !== -1;
+            })
+
+        this.setState({ items: filteredItems });
+    }
 
     render() {
+        let items = Array.from(this.state.items);
         return (
             <Form>
+                <input className="filter form-control" onInput={this.handleSearchInput} type="text" placeholder="Search for Restaurant..."/>
                 <div>
 
-                    {list.map((item, index) => (
+                    {items.map((item, index) => (
                         <Card style={{margin: 1 + 'em'}}>
                             <Card.Body>
                                 <Link to={`/restaurants/${item.id}`}

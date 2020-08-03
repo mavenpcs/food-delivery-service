@@ -56,6 +56,7 @@ export default class Register extends Component {
         this.onChangePhone = this.onChangePhone.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeRole = this.onChangeRole.bind(this);
 
         this.state = {
             username: "",
@@ -64,6 +65,7 @@ export default class Register extends Component {
             lastname: "",
             phone: "",
             password: "",
+            roles: "",
             successful: false,
             message: ""
         };
@@ -105,6 +107,12 @@ export default class Register extends Component {
         });
     }
 
+    onChangeRole(e) {
+        this.setState({
+            roles: ["vendor"]
+        });
+    }
+
     handleRegister(e) {
         e.preventDefault();
 
@@ -122,7 +130,8 @@ export default class Register extends Component {
                 this.state.firstname,
                 this.state.lastname,
                 this.state.email,
-                this.state.phone
+                this.state.phone,
+                this.state.roles
             ).then(
                 response => {
                     this.setState({
@@ -236,6 +245,17 @@ export default class Register extends Component {
                                         value={this.state.password}
                                         onChange={this.onChangePassword}
                                         validations={[required, vpassword]}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="password">Vendor</label>
+                                    <Input
+                                        type="checkbox"
+                                        className="form-control"
+                                        name="roles"
+                                        value={this.state.roles}
+                                        onChange={this.onChangeRole}
                                     />
                                 </div>
 

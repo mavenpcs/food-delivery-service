@@ -1,7 +1,8 @@
 import React from 'react';
 import {withRouter} from "react-router";
-import {Card, CardColumns, Col, Form, Jumbotron, Row} from "react-bootstrap";
+import {Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row} from "react-bootstrap";
 import placeholderImage from "../images/placeholder.jpg"
+import StarRating from "react-star-ratings";
 
 
 const foodMenu = [
@@ -56,8 +57,20 @@ const foodMenu = [
 ];
 
 class Restaurant extends React.Component {
+
+    constructor() {
+        super()
+        this.state = {
+            show: false
+        }
+    }
+
+    handleModal() {
+        this.setState({ show: !this.state.show })
+    }
+
     render() {
-        const { params } = this.props.match;
+        const {params} = this.props.match;
         return (
             <div>
                 <Jumbotron>
@@ -65,7 +78,7 @@ class Restaurant extends React.Component {
                     <Form>
                         <Form.Group as={Row} controlId="formPlaintextEmail">
                             <Col sm="10">
-                                <Form.Control plaintext readOnly defaultValue="Restaurant info goes here" />
+                                <Form.Control plaintext readOnly defaultValue="Restaurant info goes here"/>
                             </Col>
                         </Form.Group>
 
@@ -75,23 +88,42 @@ class Restaurant extends React.Component {
                 <br/>
                 <h2>Menu</h2>
                 <CardColumns>
-                {foodMenu.map((item, index) => (
-                <Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src={placeholderImage} />
-                    <Card.Body>
-                        <Card.Title>{item.name}</Card.Title>
-                        <Card.Text>
-                            {item.description}
-                        </Card.Text>
-                        <Card.Text>
-                            {item.price}
-                        </Card.Text>
-                    </Card.Body>
-                    <Card.Body>
-                        <Card.Link href="#">Add to Cart</Card.Link>
-                    </Card.Body>
-                </Card>
-                ))}
+                    {foodMenu.map((item, index) => (
+                        <Card style={{width: '18rem'}}>
+                            <Card.Img variant="top" src={placeholderImage}/>
+                            <Card.Body>
+                                <Card.Title>{item.name}</Card.Title>
+                                <Card.Text>
+                                    {item.description}
+                                </Card.Text>
+                                <Card.Text>
+                                    {item.price}
+                                </Card.Text>
+                            </Card.Body>
+                            <Card.Body>
+                                <Button onClick={() => {
+                                    this.handleModal()
+                                }}>Add to Cart</Button>
+                                <Modal
+                                    show={this.state.show}
+                                    onHide={() => this.handleModal()}
+                                    backdrop="static"
+                                    keyboard={false}
+                                >
+                                    <Modal.Header closeButton>Write a Review</Modal.Header>
+                                    <Modal.Body>
+                                        Item added to Cart!
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                        <Button onClick={() => {
+                                            this.handleModal()
+                                        }}>Back to Menu</Button>
+                                        <Button>Checkout</Button>
+                                    </Modal.Footer>
+                                </Modal>
+                            </Card.Body>
+                        </Card>
+                    ))}
                 </CardColumns>
             </div>
         )

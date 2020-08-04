@@ -38,10 +38,12 @@ class App extends React.Component {
                 })
             }
         }
-        this.setState({
-            isLoggedIn: false,
-            isLoaded: true
-        });
+        else {
+            this.setState({
+                isLoggedIn: false,
+                isLoaded: true
+            });
+        }
     }
 
     render() {

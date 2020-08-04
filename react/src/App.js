@@ -20,8 +20,11 @@ class App extends React.Component {
             isLoggedIn: false,
             isLoaded: false,
             user: "",
-            isVendor: false
+            isVendor: false,
+            shoppingCart: ""
         }
+
+        this.addtoCart = this.addtoCart.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +49,16 @@ class App extends React.Component {
         }
     }
 
+    addtoCart(item) {
+        this.setState(prevState => ({
+            shoppingCart: [...prevState.shoppingCart, item]
+        }), () => {
+            console.log(this.state.shoppingCart);
+        });
+    }
+
+
+
     render() {
         const user = this.state
         return (
@@ -53,7 +66,9 @@ class App extends React.Component {
                 <HeaderBar user={user}/>
                 <BrowserRouter>
                     <Route exact path="/" component={Main}/>
-                    <Route path="/restaurants/:restaurant" component={Restaurant}/>
+                    <Route path="/restaurants/:restaurant" render={(props) => (
+                        <Restaurant addToCart={this.addtoCart} />
+                    )} />
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register}/>
                     <Route exact path="/orderhistory" component={OrderHistory}/>

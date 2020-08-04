@@ -2,8 +2,6 @@ import React from 'react';
 import {withRouter} from "react-router";
 import {Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row} from "react-bootstrap";
 import placeholderImage from "../images/placeholder.jpg"
-import StarRating from "react-star-ratings";
-
 
 const foodMenu = [
     {
@@ -58,15 +56,22 @@ const foodMenu = [
 
 class Restaurant extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props);
         this.state = {
             show: false
         }
+
+        this.handleCart = this.handleCart.bind(this);
     }
 
     handleModal() {
         this.setState({ show: !this.state.show })
+    }
+
+    handleCart(item) {
+        this.props.addToCart(item);
+        this.handleModal();
     }
 
     render() {
@@ -89,7 +94,7 @@ class Restaurant extends React.Component {
                 <h2>Menu</h2>
                 <CardColumns>
                     {foodMenu.map((item, index) => (
-                        <Card style={{width: '18rem'}}>
+                        <Card style={{width: '18rem'}} key={index}>
                             <Card.Img variant="top" src={placeholderImage}/>
                             <Card.Body>
                                 <Card.Title>{item.name}</Card.Title>
@@ -102,7 +107,7 @@ class Restaurant extends React.Component {
                             </Card.Body>
                             <Card.Body>
                                 <Button onClick={() => {
-                                    this.handleModal()
+                                    this.handleCart(item);
                                 }}>Add to Cart</Button>
                                 <Modal
                                     show={this.state.show}
@@ -110,7 +115,7 @@ class Restaurant extends React.Component {
                                     backdrop="static"
                                     keyboard={false}
                                 >
-                                    <Modal.Header closeButton>Write a Review</Modal.Header>
+                                    <Modal.Header closeButton>Success!</Modal.Header>
                                     <Modal.Body>
                                         Item added to Cart!
                                     </Modal.Body>

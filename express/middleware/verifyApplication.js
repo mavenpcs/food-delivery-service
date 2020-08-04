@@ -13,9 +13,8 @@ checkDuplicateRestaurantName = (req, res, next) => {
             });
             return;
         }
+        next();
     });
-
-    next();
 };
 
 const verifyApplication = {

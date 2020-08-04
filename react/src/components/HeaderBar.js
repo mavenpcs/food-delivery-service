@@ -8,12 +8,10 @@ import Button from "react-bootstrap/Button";
 class HeaderBar extends React.Component {
     logOut() {
         AuthService.logout();
-        console.log("logging out");
         window.location.reload();
     }
 
     render() {
-        console.log(this.props.user.user.firstname)
         return (
             <Navbar bg="light" variant="light">
                 <Navbar.Brand href="/">
@@ -29,7 +27,7 @@ class HeaderBar extends React.Component {
                 {this.props.user.user.firstname ? (
                     <span className="navbar-nav ml-auto">
                         <div className="navbar-text mr-sm-2">
-                            First Name
+                            {this.props.user.user.firstname}
                         </div>
                         <Button class="btn btn-outline-success my-2 my-sm-0" onClick={() => {
                             this.logOut()

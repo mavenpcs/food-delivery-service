@@ -75,42 +75,45 @@ class List extends React.Component {
 
     render() {
         let items = Array.from(this.state.items);
-        return (
-            <Form>
-                <input className="filter form-control" onInput={this.handleSearchInput} type="text" placeholder="Search for Restaurant..."/>
-                <div>
+        if (items) {
+            return (
+                <Form>
+                    <input className="filter form-control" onInput={this.handleSearchInput} type="text"
+                           placeholder="Search for Restaurant..."/>
+                    <div>
 
-                    {items.map((item, index) => (
-                        <Card style={{margin: 1 + 'em'}}>
-                            <Card.Body>
-                                <Link to={`/restaurants/${item.id}`}
-                                      className="stretched-link">{item.name}</Link>
+                        {items.map((item, index) => (
+                            <Card style={{margin: 1 + 'em'}}>
+                                <Card.Body>
+                                    <Link to={`/restaurants/${item.id}`}
+                                          className="stretched-link">{item.name}</Link>
 
-                                <Card.Text>
-                                    {item.address}
-                                </Card.Text>
-                                <Card.Text>
-                                    Hours: {item.hours}
-                                </Card.Text>
-                                <Ratings
-                                    rating={item.rating}
-                                    widgetRatedColors="yellow">
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                </Ratings>
+                                    <Card.Text>
+                                        {item.address}
+                                    </Card.Text>
+                                    <Card.Text>
+                                        Hours: {item.hours}
+                                    </Card.Text>
+                                    <Ratings
+                                        rating={item.rating}
+                                        widgetRatedColors="yellow">
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                    </Ratings>
 
-                            </Card.Body>
-                        </Card>
+                                </Card.Body>
+                            </Card>
 
 
-                    ))}
+                        ))}
 
-                </div>
-            </Form>
-        )
+                    </div>
+                </Form>
+            )
+        }
     }
 }
 

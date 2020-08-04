@@ -27,14 +27,12 @@ class App extends React.Component {
     componentDidMount() {
         const user = AuthService.getCurrentUser();
         if (user) {
-            console.log(user);
             this.setState({
                 isLoggedIn: true,
                 isLoaded: true,
                 user: user
             });
-            if (user.roles) {
-                console.log("THIS IS A VENDOR")
+            if (user.roles == "ROLE_VENDOR") {
                 this.setState({
                     isVendor: true
                 })
@@ -44,7 +42,6 @@ class App extends React.Component {
                 isLoggedIn: false,
                 isLoaded: true
             });
-            console.log("not logged in")
         }
     }
 

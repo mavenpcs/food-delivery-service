@@ -1,4 +1,4 @@
-const { authJwt }= require('../middleware');
+const { authJwt, verifyFood }= require('../middleware');
 const controller = require('../controllers/food.controller');
 
 const API_URL = '/api/vendor/';
@@ -17,6 +17,7 @@ module.exports = function(app) {
         [
             authJwt.verifyToken,
             authJwt.isVendor,
+            verifyFood.checkDuplicateFoodName
         ],
         controller.add
     );

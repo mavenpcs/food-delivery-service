@@ -32,17 +32,16 @@ class App extends React.Component {
                 isLoaded: true,
                 user: user
             });
-            if (user.roles === "ROLE_VENDOR") {
+            if (user.roles == "ROLE_VENDOR") {
                 this.setState({
                     isVendor: true
                 })
             }
-        } else {
-            this.setState({
-                isLoggedIn: false,
-                isLoaded: true
-            });
         }
+        this.setState({
+            isLoggedIn: false,
+            isLoaded: true
+        });
     }
 
     render() {
@@ -64,7 +63,7 @@ class App extends React.Component {
                             {this.state.isVendor ? (
                                 <Redirect to={"/myMenu"}/>
                             ) : (
-                                <Redirect to={"/"}/>
+                                null
                             )}
 
                         </div>

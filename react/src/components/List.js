@@ -114,6 +114,11 @@ class List extends React.Component {
                 </Form>
             )
         }
+        return (
+            <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
+        )
 
     }
 }

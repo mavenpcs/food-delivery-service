@@ -47,35 +47,35 @@ CREATE TABLE IF NOT EXISTS `food_delivery`.`food` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE IF NOT EXISTS `food_delivery`.`order` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
-  `restaurant_name` VARCHAR(100) NOT NULL,
-  `date` DATETIME NOT NULL,
-  `food_name` VARCHAR(50) NOT NULL,
-  `food_price` FLOAT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `user_id` (`user_id` ASC) VISIBLE,
-  INDEX `restaurant_name` (`restaurant_name` ASC) VISIBLE,
-  INDEX `food_name` (`food_name` ASC) VISIBLE,
-  INDEX `food_price` (`food_price` ASC) VISIBLE,
-  CONSTRAINT `FK_order_user_id`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `food_delivery`.`app_user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_order_restaurant_name`
-    FOREIGN KEY (`restaurant_name`)
-    REFERENCES `food_delivery`.`restaurant` (`name`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_order_food_name`
-    FOREIGN KEY (`food_name`)
-    REFERENCES `food_delivery`.`food` (`name`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_order_food_price`
-    FOREIGN KEY (`food_price`)
-    REFERENCES `food_delivery`.`food` (`price`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+-- CREATE TABLE IF NOT EXISTS `food_delivery`.`orders` (
+--   `id` INT NOT NULL AUTO_INCREMENT,
+--   `user_id` INT NOT NULL,
+--   `restaurant_name` VARCHAR(100) NOT NULL,
+--   `date` DATETIME NOT NULL,
+--   `food_name` VARCHAR(50) NOT NULL,
+--   `food_price` FLOAT NOT NULL,
+--   PRIMARY KEY (`id`),
+--   INDEX `user_id` (`user_id` ASC) VISIBLE,
+--   INDEX `restaurant_name` (`restaurant_name` ASC) VISIBLE,
+--   INDEX `food_name` (`food_name` ASC) VISIBLE,
+--   INDEX `food_price` (`food_price` ASC) VISIBLE,
+--   CONSTRAINT `FK_order_user_id`
+--     FOREIGN KEY (`user_id`)
+--     REFERENCES `food_delivery`.`app_user` (`id`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION,
+--   CONSTRAINT `FK_order_restaurant_name`
+--     FOREIGN KEY (`restaurant_name`)
+--     REFERENCES `food_delivery`.`restaurant` (`name`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION,
+--   CONSTRAINT `FK_order_food_name`
+--     FOREIGN KEY (`food_name`)
+--     REFERENCES `food_delivery`.`food` (`name`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION,
+--   CONSTRAINT `FK_order_food_price`
+--     FOREIGN KEY (`food_price`)
+--     REFERENCES `food_delivery`.`food` (`price`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION);

@@ -29,7 +29,7 @@ class HeaderBar extends React.Component {
                         <div className="navbar-text mr-sm-2">
                             {this.props.user.user.firstname}
                         </div>
-                        <Button class="btn btn-outline-success my-2 my-sm-0" onClick={() => {
+                        <Button className="btn btn-outline-success my-2 my-sm-0" onClick={() => {
                             this.logOut()
                         }}>
                                 Log Out

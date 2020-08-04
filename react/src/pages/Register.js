@@ -249,7 +249,7 @@ export default class Register extends Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="password">Vendor</label>
+                                    <label htmlFor="vendor">Vendor</label>
                                     <Input
                                         type="checkbox"
                                         className="form-control"

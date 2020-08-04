@@ -51,7 +51,7 @@ class List extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: ""
+            items: list
         }
 
         this.handleSearchInput = this.handleSearchInput.bind(this);
@@ -64,17 +64,17 @@ class List extends React.Component {
     }
 
     handleSearchInput(event) {
-        let searcjQery = event.target.value.toLowerCase(),
+        let searchQuery = event.target.value.toLowerCase(),
             filteredItems = list.filter((el) => {
                 let searchValue = el.name.toLowerCase();
-                return searchValue.indexOf(searcjQery) !== -1;
+                return searchValue.indexOf(searchQuery) !== -1;
             })
 
         this.setState({ items: filteredItems });
     }
 
     render() {
-        let items = Array.from(this.state.items);
+        const items = Array.from(this.state.items);
         if (items) {
             return (
                 <Form>
@@ -114,6 +114,7 @@ class List extends React.Component {
                 </Form>
             )
         }
+
     }
 }
 

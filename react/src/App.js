@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import HeaderBar from './components/HeaderBar';
-import {Route} from "react-router";
+import {Redirect, Route} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import Main from "./pages/Main";
 import Restaurant from "./pages/Restaurant";

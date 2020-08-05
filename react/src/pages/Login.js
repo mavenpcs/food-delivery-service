@@ -5,6 +5,7 @@ import CheckButton from "react-validation/build/button";
 
 import AuthService from "../services/auth.service";
 import {Link} from "react-router-dom";
+import logo from "../images/DelishLogo.png"
 
 const required = value => {
     if (!value) {
@@ -85,7 +86,7 @@ export default class Login extends Component {
             <div className="authBox-center">
                 <div className="card card-container">
                     <img
-                        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                        src={logo}
                         alt="profile-img"
                         className="profile-img-card"
                     />

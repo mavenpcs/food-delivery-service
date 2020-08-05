@@ -20,11 +20,14 @@ class HeaderBar extends React.Component {
                     <img
                         alt=""
                         src={logo}
-                        width="80"
-                        height="50"
+                        width="160"
+                        height="100"
                         className="d-inline-block"
                     />
-                    DelishDelivery
+                    <span className="logoText">
+                        <span className="green">Delish</span>
+                        <span className="brown">Delivery</span>
+                    </span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 {this.props.user.user.firstname ? (

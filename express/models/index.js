@@ -27,7 +27,13 @@ db.sequelize = sequelize;
 
 db.appuser = require('./appuser.model')(sequelize, Sequelize);
 db.role = require('./role.model')(sequelize, Sequelize);
+db.restaurant = require('./restaurant.model')(sequelize, Sequelize);
+db.food = require('./food.model')(sequelize, Sequelize);
+// db.order = require('./order.model')(sequelize, Sequelize);
+// db.orderitem = require('./orderitem.model')(sequelize, Sequelize);
 
+
+// User-Role associations
 db.role.belongsToMany(db.appuser, {
     through: 'user_roles',
     foreignKey: 'roleId',

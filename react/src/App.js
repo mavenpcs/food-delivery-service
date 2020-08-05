@@ -10,8 +10,10 @@ import Login from "./pages/Login"
 import Register from "./pages/Register";
 import OrderHistory from "./pages/OrderHistory";
 import AuthService from "./services/auth.service"
+import UserService from "./services/user.service"
 import MyMenu from "./pages/MyMenu";
 import Cart from "./pages/Cart";
+
 
 class App extends React.Component {
     constructor(props) {
@@ -21,7 +23,8 @@ class App extends React.Component {
             isLoaded: false,
             user: "",
             isVendor: false,
-            shoppingCart: ""
+            shoppingCart: "",
+            loadingRestaurants: true
         }
 
         this.addtoCart = this.addtoCart.bind(this);
@@ -47,6 +50,9 @@ class App extends React.Component {
                 isLoaded: true
             });
         }
+
+
+
     }
 
     addtoCart(item) {
@@ -74,18 +80,18 @@ class App extends React.Component {
                     <Route exact path="/orderhistory" component={OrderHistory}/>
                     <Route exact path="/myMenu" component={MyMenu}/>
                     <Route exact path="/cart" component={Cart}/>
-                    {!this.state.isLoggedIn && this.state.isLoaded ? (
-                        <Redirect to="/login"/>
-                    ) : (
-                        <div>
-                            {this.state.isVendor ? (
-                                <Redirect to={"/myMenu"}/>
-                            ) : (
-                                null
-                            )}
-
-                        </div>
-                    )}
+                    {/*{!this.state.isLoggedIn && this.state.isLoaded ? (*/}
+                    {/*    <Redirect to="/login"/>*/}
+                    {/*) : (*/}
+                    {/*    <div>*/}
+                    {/*        {this.state.isVendor ? (*/}
+                    {/*            <Redirect to={"/myMenu"}/>*/}
+                    {/*        ) : (*/}
+                    {/*            null*/}
+                    {/*        )}*/}
+                    
+                    {/*    </div>*/}
+                    {/*)}*/}
                 </BrowserRouter>
             </div>
 

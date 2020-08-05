@@ -82,7 +82,7 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div className="w-25 p-3">
+            <div className="authBox-center">
                 <div className="card card-container">
                     <img
                         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"

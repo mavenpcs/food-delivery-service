@@ -2,6 +2,7 @@ import React from 'react';
 import {withRouter} from "react-router";
 import {Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row} from "react-bootstrap";
 import placeholderImage from "../images/placeholder.jpg"
+import {Link} from "react-router-dom";
 
 const foodMenu = [
     {
@@ -66,7 +67,7 @@ class Restaurant extends React.Component {
     }
 
     handleModal() {
-        this.setState({ show: !this.state.show })
+        this.setState({show: !this.state.show})
     }
 
     handleCart(item) {
@@ -120,10 +121,13 @@ class Restaurant extends React.Component {
                                         Item added to Cart!
                                     </Modal.Body>
                                     <Modal.Footer>
+
                                         <Button onClick={() => {
                                             this.handleModal()
                                         }}>Back to Menu</Button>
-                                        <Button>Checkout</Button>
+                                        <Link to="/checkout">
+                                            <Button>Checkout</Button>
+                                        </Link>
                                     </Modal.Footer>
                                 </Modal>
                             </Card.Body>

@@ -84,7 +84,7 @@ export default class Login extends Component {
     render() {
         return (
             <div className="authBox-center">
-                <div className="card card-container">
+                <div className="card card-container roundedCorners">
                     <img
                         src={logo}
                         alt="profile-img"
@@ -101,7 +101,7 @@ export default class Login extends Component {
                             <label htmlFor="username">Username</label>
                             <Input
                                 type="text"
-                                className="form-control"
+                                className="form-control roundedCorners"
                                 name="username"
                                 value={this.state.username}
                                 onChange={this.onChangeUsername}
@@ -113,7 +113,7 @@ export default class Login extends Component {
                             <label htmlFor="password">Password</label>
                             <Input
                                 type="password"
-                                className="form-control"
+                                className="form-control roundedCorners"
                                 name="password"
                                 value={this.state.password}
                                 onChange={this.onChangePassword}
@@ -123,7 +123,7 @@ export default class Login extends Component {
 
                         <div className="form-group">
                             <button
-                                className="btn btn-primary btn-block"
+                                className="btn btn-light roundedCorners"
                                 disabled={this.state.loading}
                             >
                                 {this.state.loading && (
@@ -149,7 +149,7 @@ export default class Login extends Component {
                         />
                     </Form>
                     <div className="form-group">
-                        <Link to="/register" className="btn btn-primary btn-block">
+                        <Link to="/register" className="btn btn-light roundedCorners">
                             {this.state.loading && (
                                 <span className="spinner-border spinner-border-sm"></span>
                             )}

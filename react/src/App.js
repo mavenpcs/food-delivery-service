@@ -80,18 +80,18 @@ class App extends React.Component {
                     <Route exact path="/orderhistory" component={OrderHistory}/>
                     <Route exact path="/myMenu" component={MyMenu}/>
                     <Route exact path="/cart" component={Cart}/>
-                    {/*{!this.state.isLoggedIn && this.state.isLoaded ? (*/}
-                    {/*    <Redirect to="/login"/>*/}
-                    {/*) : (*/}
-                    {/*    <div>*/}
-                    {/*        {this.state.isVendor ? (*/}
-                    {/*            <Redirect to={"/myMenu"}/>*/}
-                    {/*        ) : (*/}
-                    {/*            null*/}
-                    {/*        )}*/}
+                    {!this.state.isLoggedIn && this.state.isLoaded ? (
+                        <Redirect to="/login"/>
+                    ) : (
+                        <div>
+                            {this.state.isVendor ? (
+                                <Redirect to={"/myMenu"}/>
+                            ) : (
+                                null
+                            )}
                     
-                    {/*    </div>*/}
-                    {/*)}*/}
+                        </div>
+                    )}
                 </BrowserRouter>
             </div>
 

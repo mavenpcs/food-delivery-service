@@ -29,4 +29,13 @@ module.exports = function(app) {
         ],
         controller.getFoodByRestaurantId
     );
+
+    app.post(
+        API_URL + 'edit-food',
+        [
+            authJwt.verifyToken,
+            authJwt.isVendor
+        ],
+        controller.edit
+    )
 };

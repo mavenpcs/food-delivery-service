@@ -10,8 +10,6 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 const app = express();
-
-
 const corsOptions = {
   origin: 'http://localhost:3000'
 };

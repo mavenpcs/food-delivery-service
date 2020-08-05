@@ -32,3 +32,80 @@ exports.getFoodByRestaurantId = (req, res) => {
         res.status(500).send({ message: err.message });
     })
 };
+
+exports.edit = (req, res) => {
+    Food.findOne({
+        where: {
+            id: req.body.id,
+            restaurant_id: req.body.restaurantid
+        }
+    }).then(food => {
+        if (!food) {
+            res.status(404).send({ message: 'Food not found.'});
+            return;
+        }
+        console.log(req.body);
+        // Update category
+        if (req.body.category) {
+            Food.update({
+                category: req.body.category
+               },
+               {
+                   where: {
+                       id: req.body.id,
+                       restaurant_id: req.body.restaurantid
+                   }
+               }).catch(err => {
+                res.status(500).send({ message: err.message });
+                return;
+            });
+        }
+        // Update name
+        if (req.body.name) {
+            Food.update({
+                name: req.body.name
+               },
+               {
+                   where: {
+                       id: req.body.id,
+                       restaurant_id: req.body.restaurantid
+                   }
+               }).catch(err => {
+                res.status(500).send({ message: err.message });
+                return;
+            });
+        }
+        // Update price
+        if (req.body.price) {
+            Food.update({
+                price: req.body.price
+               },
+               {
+                   where: {
+                       id: req.body.id,
+                       restaurant_id: req.body.restaurantid
+                   }
+               }).catch(err => {
+                res.status(500).send({ message: err.message });
+                return;
+            });
+        }
+        // Update description
+        if (req.body.description) {
+            Food.update({
+                description: req.body.description
+               },
+               {
+                   where: {
+                       id: req.body.id,
+                       restaurant_id: req.body.restaurantid
+                   }
+               }).catch(err => {
+                res.status(500).send({ message: err.message });
+                return;
+            });
+        }
+    }).then(() => {
+        res.send({ message: 'Food was modified successfully!' });
+    });
+};

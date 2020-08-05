@@ -48,43 +48,78 @@ const list = [
 ];
 
 class List extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: list
+        }
+
+        this.handleSearchInput = this.handleSearchInput.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            items: list
+        })
+    }
+
+    handleSearchInput(event) {
+        let searchQuery = event.target.value.toLowerCase(),
+            filteredItems = list.filter((el) => {
+                let searchValue = el.name.toLowerCase();
+                return searchValue.indexOf(searchQuery) !== -1;
+            })
+
+        this.setState({ items: filteredItems });
+    }
 
     render() {
+        const items = Array.from(this.state.items);
+        if (items) {
+            return (
+                <Form>
+                    <input className="filter form-control" onInput={this.handleSearchInput} type="text"
+                           placeholder="Search for Restaurant..."/>
+                    <div>
+
+                        {items.map((item, index) => (
+                            <Card style={{margin: 1 + 'em'}} key={index}>
+                                <Card.Body>
+                                    <Link to={`/restaurants/${item.id}`}
+                                          className="stretched-link">{item.name}</Link>
+
+                                    <Card.Text>
+                                        {item.address}
+                                    </Card.Text>
+                                    <Card.Text>
+                                        Hours: {item.hours}
+                                    </Card.Text>
+                                    <Ratings
+                                        rating={item.rating}
+                                        widgetRatedColors="yellow">
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                    </Ratings>
+
+                                </Card.Body>
+                            </Card>
+
+
+                        ))}
+
+                    </div>
+                </Form>
+            )
+        }
         return (
-            <Form>
-                <div>
-
-                    {list.map((item, index) => (
-                        <Card style={{margin: 1 + 'em'}}>
-                            <Card.Body>
-                                <Link to={`/restaurants/${item.id}`}
-                                      className="stretched-link">{item.name}</Link>
-
-                                <Card.Text>
-                                    {item.address}
-                                </Card.Text>
-                                <Card.Text>
-                                    Hours: {item.hours}
-                                </Card.Text>
-                                <Ratings
-                                    rating={item.rating}
-                                    widgetRatedColors="yellow">
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                </Ratings>
-
-                            </Card.Body>
-                        </Card>
-
-
-                    ))}
-
-                </div>
-            </Form>
+            <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
         )
+
     }
 }
 

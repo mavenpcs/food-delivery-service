@@ -56,6 +56,7 @@ export default class Register extends Component {
         this.onChangePhone = this.onChangePhone.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeRole = this.onChangeRole.bind(this);
 
         this.state = {
             username: "",
@@ -64,6 +65,7 @@ export default class Register extends Component {
             lastname: "",
             phone: "",
             password: "",
+            roles: "",
             successful: false,
             message: ""
         };
@@ -105,6 +107,12 @@ export default class Register extends Component {
         });
     }
 
+    onChangeRole(e) {
+        this.setState({
+            roles: ["vendor"]
+        });
+    }
+
     handleRegister(e) {
         e.preventDefault();
 
@@ -122,14 +130,15 @@ export default class Register extends Component {
                 this.state.firstname,
                 this.state.lastname,
                 this.state.email,
-                this.state.phone
+                this.state.phone,
+                this.state.roles
             ).then(
                 response => {
                     this.setState({
                         message: response.data.message,
                         successful: true
                     });
-                    this.props.history.push("/login");
+                    this.props.history.push("/");
                     window.location.reload();
                 },
                 error => {
@@ -151,7 +160,7 @@ export default class Register extends Component {
 
     render() {
         return (
-            <div className="col-md-12">
+            <div className="authBox-center">
                 <div className="card card-container">
                     <img
                         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -236,6 +245,17 @@ export default class Register extends Component {
                                         value={this.state.password}
                                         onChange={this.onChangePassword}
                                         validations={[required, vpassword]}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="vendor">Vendor</label>
+                                    <Input
+                                        type="checkbox"
+                                        className="form-control"
+                                        name="roles"
+                                        value={this.state.roles}
+                                        onChange={this.onChangeRole}
                                     />
                                 </div>
 

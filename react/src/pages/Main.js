@@ -5,7 +5,7 @@ import List from "../components/List";
 
 function Main() {
     return (
-        <div class="container">
+        <div className="container">
             <Promotions />
             <br/>
             <List/>

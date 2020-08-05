@@ -8,7 +8,7 @@ import BubbleWaffle from "../images/BubbleWaffle.jpg"
 class Promotions extends React.Component {
     render() {
         return (
-            <Carousel class="mw-700">
+            <Carousel className="mw-500">
                 <Carousel.Item>
                     <img
                         className="d-block w-100"

@@ -1,29 +1,48 @@
 import React from 'react';
-import { Navbar, Nav } from "react-bootstrap";
+
+
+import {Navbar, Nav} from "react-bootstrap";
 import logo from '../images/DelishLogo.png'
+import AuthService from '../services/auth.service'
+import Button from "react-bootstrap/Button";
 
 
 class HeaderBar extends React.Component {
+    logOut() {
+        AuthService.logout();
+        window.location.reload();
+    }
+
     render() {
         return (
-        <Navbar bg="light" variant="light">
-            <Navbar.Brand href="/">
-                <img
-                    alt=""
-                    src={logo}
-                    width="80"
-                    height="50"
-                    className="d-inline-block align-top"
-                />{' '}
-                DelishDelivery
-            </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Nav className="mr-auto">
-
-                    <Nav.Link href="/cart">View Cart</Nav.Link>
-                    
-                </Nav>
-        </Navbar>
+            <Navbar bg="light" variant="light">
+                <Navbar.Brand href="/">
+                    <img
+                        alt=""
+                        src={logo}
+                        width="80"
+                        height="50"
+                        className="d-inline-block"
+                    />
+                    DelishDelivery
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+                {this.props.user.user.firstname ? (
+                    <span className="navbar-nav ml-auto">
+                        <div className="navbar-text mr-sm-2">
+                            {this.props.user.user.firstname}
+                        </div>
+                        <Nav className="ml-auto">
+                            <Nav.Link href="/cart">View Cart</Nav.Link>
+                        </Nav>
+                        <Button className="btn btn-outline-success my-2 my-sm-0" onClick={() => {
+                            this.logOut()
+                        }}>
+                                Log Out
+                        </Button>
+                    </span>
+                ) : null}
+            </Navbar>
         )
     }
 }

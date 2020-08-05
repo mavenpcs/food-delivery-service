@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from "react-router";
 import { Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row } from "react-bootstrap";
 import StarRating from "react-star-ratings";
-import placeholderImage from "../images/placeholder.jpg"
 import FiletOFish from "../images/mcdonalds-filet-o-fish.jpg"
 
 // Place holder for now
@@ -51,12 +50,13 @@ class OrderHistory extends React.Component {
 
     }
 
-    changeRating(newRating, name) {
-        this.setState({ rating: newRating })
+    changeRating = (newRating, name) => {
+        this.setState({ rating: newRating });
     }
 
     render() {
         const { params } = this.props.match;
+        const { rating } = this.state;
         return (
             <div>
                 <Jumbotron>
@@ -71,7 +71,37 @@ class OrderHistory extends React.Component {
 
                 </Jumbotron>
                 <br/>
-                <h2>Your last 10 orders</h2>
+                <h2>Your last Order</h2>
+                <br />
+                <Button onClick={() => { this.handleModal() }}>Leave the Restaurant a Review</Button>
+                <Modal
+                    show={this.state.show}
+                    onHide={() => this.handleModal()}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton>Let others know how your experience was!</Modal.Header>
+                    <Modal.Body>
+                        <Form target="_self" method="POST">
+                            <StarRating
+                                rating={this.state.rating}
+                                starRatedColor="red"
+                                isSelectable={true}
+                                changeRating={this.changeRating}
+                                numberOfStars={5}
+                                name='rating'
+                            />
+                            <Form.Group controlId="reviewForm.Comments">
+                                <Form.Label>Comments (Character limit: 500)</Form.Label>
+                                <Form.Control as="textarea" rows="5" />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={() => { this.handleModal() }}>Cancel</Button>
+                        <Button>Submit</Button>
+                    </Modal.Footer>
+                </Modal>
                 <CardColumns>
                 {foodMenu.map((item, index) => (
                 <Card style={{ width: '18rem' }}>
@@ -81,40 +111,6 @@ class OrderHistory extends React.Component {
                         <Card.Text>
                             {item.description}
                         </Card.Text>
-                    </Card.Body>
-                        <Card.Body>
-                            <Button onClick={() => { this.handleModal() }}>Review</Button>
-                            <Modal
-                                show={this.state.show}
-                                onHide={() => this.handleModal()}
-                                backdrop="static"
-                                keyboard={false}
-                            >
-                            <Modal.Header closeButton>Write a Review</Modal.Header>
-                                <Modal.Body>
-                                    <Form target="_self" method="POST">
-                                        <StarRating
-                                            rating={this.state.rating}
-                                            starRatedColor="blue"
-                                            isSelectable={true}
-                                            changeRating={() => this.changeRating.bind(this)}
-                                            numberOfStars={5}
-                                            name='rating'
-                                        />
-                                        <Form.Group controlId="reviewForm.Comments">
-                                            <Form.Label>Comments (Character limit: 500)</Form.Label>
-                                            <Form.Control as="textarea" rows="5" />
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.File id="reviewPhoto" label="Photo" />
-                                        </Form.Group>
-                                    </Form>
-                                </Modal.Body>
-                                <Modal.Footer>
-                                    <Button onClick={() => { this.handleModal() }}>Cancel</Button>
-                                    <Button>Post</Button>
-                                </Modal.Footer>
-                            </Modal>
                     </Card.Body>
                 </Card>
                 ))}

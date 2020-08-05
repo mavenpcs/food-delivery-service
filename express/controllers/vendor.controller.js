@@ -15,3 +15,18 @@ exports.apply = (req, res) => {
         res.status(500).send({ message: err.message });
     });
 };
+
+exports.getAllRestaurants = (req, res) => {
+    Restaurant.findAll()
+    .then(restaurants => {
+        if (restaurants) {
+            res.status(200).send(restaurants);
+        } else {
+            res.status(404).send({ message: 'No restaurants found.'});
+            return;
+        }
+    })
+    .catch(err => {
+        res.status(500).send({ message: err.message })
+    })
+};

@@ -21,4 +21,12 @@ module.exports = function(app) {
         ],
         controller.add
     );
+
+    app.get(
+        API_URL + 'foods',
+        [
+            authJwt.verifyToken
+        ],
+        controller.getFoodByRestaurantId
+    );
 };

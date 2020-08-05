@@ -38,6 +38,7 @@ require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/vendor.routes')(app);
 require('./routes/food.routes')(app);
+// require('./routes/order.routes')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,8 +58,8 @@ app.use(function(err, req, res, next) {
 
 const db = require('./models/index');
 const { sequelize } = require('./models/index');
-const Role = db.role;
-
+// for pre-populating users, not needed for production
+const initial = require('./prepopulate.data');
 
 // For development
 db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(() => {
@@ -83,17 +84,5 @@ db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(() => {
 
 // For production
 // db.sequelize.sync();
-
-function initial() {
-  Role.create({
-    id: 1,
-    name: 'customer'
-  });
-
-  Role.create({
-    id: 2,
-    name: 'vendor'
-  })
-}
 
 module.exports = app;

@@ -15,3 +15,20 @@ exports.add = (req, res) => {
         res.status(500).send({ message: err.message });
     });
 };
+
+exports.getFoodByRestaurantId = (req, res) => {
+    Food.findAll({
+        where: {
+           restaurant_id: req.body.restaurantid 
+        }
+    }).then(foods => {
+        if (foods) {
+            res.status(200).send(foods);
+        } else {
+            res.status(404).send({ message: 'No foods found for this restaurant.'});
+            return;
+        }
+    }).catch(err => {
+        res.status(500).send({ message: err.message });
+    })
+};

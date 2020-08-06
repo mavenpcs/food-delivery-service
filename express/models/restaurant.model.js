@@ -28,7 +28,8 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false
         },
         rating: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            defaultValue: 0
         }
     });
 

@@ -13,7 +13,7 @@ module.exports = function(app) {
     });
 
     app.post(
-        API_URL + 'add',
+        API_URL + 'add-food',
         [
             authJwt.verifyToken,
             authJwt.isVendor,

@@ -25,8 +25,7 @@ exports.getFoodByRestaurantId = (req, res) => {
         if (foods) {
             res.status(200).send(foods);
         } else {
-            res.status(404).send({ message: 'No foods found for this restaurant.'});
-            return;
+            return res.status(404).send({ message: 'No foods found for this restaurant.'});
         }
     }).catch(err => {
         res.status(500).send({ message: err.message });
@@ -41,10 +40,8 @@ exports.edit = (req, res) => {
         }
     }).then(food => {
         if (!food) {
-            res.status(404).send({ message: 'Food not found.'});
-            return;
+            return res.status(404).send({ message: 'Food not found.'});
         }
-        console.log(req.body);
         // Update category
         if (req.body.category) {
             Food.update({
@@ -56,8 +53,7 @@ exports.edit = (req, res) => {
                        restaurant_id: req.body.restaurantid
                    }
                }).catch(err => {
-                res.status(500).send({ message: err.message });
-                return;
+                return res.status(500).send({ message: err.message });
             });
         }
         // Update name
@@ -71,8 +67,7 @@ exports.edit = (req, res) => {
                        restaurant_id: req.body.restaurantid
                    }
                }).catch(err => {
-                res.status(500).send({ message: err.message });
-                return;
+                return res.status(500).send({ message: err.message });
             });
         }
         // Update price
@@ -86,8 +81,7 @@ exports.edit = (req, res) => {
                        restaurant_id: req.body.restaurantid
                    }
                }).catch(err => {
-                res.status(500).send({ message: err.message });
-                return;
+                return res.status(500).send({ message: err.message });
             });
         }
         // Update description
@@ -101,8 +95,7 @@ exports.edit = (req, res) => {
                        restaurant_id: req.body.restaurantid
                    }
                }).catch(err => {
-                res.status(500).send({ message: err.message });
-                return;
+                return res.status(500).send({ message: err.message });
             });
         }
     }).then(() => {

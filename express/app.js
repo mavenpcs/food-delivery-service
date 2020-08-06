@@ -36,6 +36,7 @@ require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/vendor.routes')(app);
 require('./routes/food.routes')(app);
+require('./routes//review.routes')(app);
 // require('./routes/order.routes')(app);
 
 // catch 404 and forward to error handler

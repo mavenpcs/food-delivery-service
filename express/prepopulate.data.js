@@ -212,6 +212,7 @@ initial = () => {
     lastname: 'Smith',
     email: 'test@abc.com',
     phone: '12345678',
+    address: '123 Fancy Dr',
     roles: vendorRole
   }).then(user => {
     if (vendorRole) {
@@ -243,6 +244,7 @@ initial = () => {
     lastname: 'Han',
     email: 'test2@abc.com',
     phone: '12345678',
+    address: '100 Some St',
     roles: vendorRole
   }).then(user => {
     if (vendorRole) {
@@ -274,6 +276,7 @@ initial = () => {
     lastname: 'Call',
     email: 'themanager@abc.com',
     phone: '12345678',
+    address: '123 Calmdown Ave',
     roles: customerRole
   }).then(user => {
     if (customerRole) {

@@ -22,8 +22,7 @@ exports.getAllRestaurants = (req, res) => {
         if (restaurants) {
             res.status(200).send(restaurants);
         } else {
-            res.status(404).send({ message: 'No restaurants found.'});
-            return;
+            return res.status(404).send({ message: 'No restaurants found.'});
         }
     })
     .catch(err => {

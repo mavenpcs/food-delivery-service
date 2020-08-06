@@ -1,5 +1,5 @@
 const { authJwt }= require('../middleware');
-const controller = require('../controllers/order.controller');
+const controller = require('../controllers/restaurant.review.controller');
 
 const API_URL = '/api/customer/';
 
@@ -13,20 +13,29 @@ module.exports = function(app) {
     });
 
     app.post(
-        API_URL + 'order',
+        API_URL + 'add-review',
         [
             authJwt.verifyToken,
             authJwt.isCustomer,
         ],
-        controller.order
+        controller.addReview
     );
 
     app.get(
-        API_URL + 'get-orders',
+        API_URL + 'get-review',
         [
             authJwt.verifyToken,
             authJwt.isCustomer
         ],
-        controller.getorders
+        controller.getRandomReview
     );
+
+    app.get(
+        API_URL + 'get-rating',
+        [
+            authJwt.verifyToken,
+            authJwt.isCustomer
+        ],
+        controller.getRatingById
+    )
 };

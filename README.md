@@ -27,15 +27,15 @@ Please check out the following pages via their link:
     - Parameters: userid, name, address, deliveryfee, rating (optional)
 - Add food (POST): http://localhost:3000/api/vendor/add-food
     - Parameters: restaurantid, category (optional), name, price, description
-- Get all foods by restaurant id (GET): http://localhost:3000/api/vendor/foods
-    - Parameter: restaurantid
 - Edit food (POST): http://localhost:3000/api/vendor/edit-food
     - Parameters: id, restaurantid, category(optional), name (optional), price (optional), description (optional)
 
 ##### Customers
 - Get all restaurants (GET): http://localhost:3000/api/vendor/restaurants
-- Get one restaurant by name (GET): http://localhost:3000/api/vendor/get-restaurant
+- Get one restaurant by name (GET): http://localhost:3000/api/vendor/get-restaurant/:name
     - Parameter: name
+- Get all foods by restaurant id (GET): http://localhost:3000/api/vendor/foods/:restaurantid
+    - Parameter: restaurantid
 - Add review & rating (POST): http://localhost:3000/api/customer/add-review
     - Parameters: restaurantid, rating, comments
 - Get random review (GET): http://localhost:3000/api/customer/get-review

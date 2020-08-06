@@ -33,7 +33,7 @@ exports.getAllRestaurants = (req, res) => {
 exports.getRestaurantByName = (req, res) => {
     Restaurant.findOne({
         where: {
-            name: req.body.name
+            name: req.params.name
         }
     }).then(restaurant => {
         if (restaurant) {

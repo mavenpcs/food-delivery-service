@@ -23,7 +23,7 @@ module.exports = function(app) {
     );
 
     app.get(
-        API_URL + 'foods',
+        API_URL + 'foods/:restaurantid',
         [
             authJwt.verifyToken
         ],

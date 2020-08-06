@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import {Navbar, Nav} from "react-bootstrap";
+import {Navbar} from "react-bootstrap";
 import logo from '../images/DelishLogo.png'
 import AuthService from '../services/auth.service'
 import Button from "react-bootstrap/Button";
@@ -35,10 +35,7 @@ class HeaderBar extends React.Component {
                         <div className="navbar-text mr-sm-2">
                             {this.props.user.user.firstname}
                         </div>
-                        <Nav className="ml-auto">
-                            <Nav.Link href="/cart">View Cart</Nav.Link>
-                        </Nav>
-                        <Button className="btn btn-outline-success my-2 my-sm-0" onClick={() => {
+                        <Button className="btn btn-light roundedCorners my-2 my-sm-0" onClick={() => {
                             this.logOut()
                         }}>
                                 Log Out

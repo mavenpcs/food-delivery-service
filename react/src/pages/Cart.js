@@ -1,90 +1,64 @@
 import React from 'react';
-import { withRouter } from "react-router";
-import { Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row } from "react-bootstrap";
-import placeholderImage from "../images/placeholder.jpg"
-import FiletOFish from "../images/mcdonalds-filet-o-fish.jpg"
+import {withRouter} from "react-router";
+import {Button} from "react-bootstrap";
+import PriceDisplay from "../components/PriceDisplay";
 
-// Place holder for now
-const foodMenu = [
-    {
-        id: '0',
-        category: "Burgers",
-        restaurant_name: "McDonald's",
-        name: 'Big Mac',
-        price: 4.99,
-        description: 'this is a Big Mac with 9999999999999999999 Calories'
-    },
-    {
-        id: '2',
-        category: "Burgers",
-        restaurant_name: "McDonald's",
-        name: 'Quarter Pounder',
-        price: 5.99,
-        description: 'Contains Cheese'
-    },
-    {
-        id: '5',
-        category: "Sandwiches",
-        restaurant_name: "McDonald's",
-        name: 'Filet O Fish',
-        price: 5.19,
-        description: 'Irresistibly fishy'
-    },
-
-];
 
 class Cart extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props);
         this.state = {
-            show: false,
-            rating: 0
+            shoppingCart: this.props.shoppingCart,
+            subTotal: 0
+        }
+        this.calculatePrice();
+        console.log(this.props.restaurant);
+    }
+
+    componentDidMount() {
+        console.log(this.state)
+    }
+
+    calculatePrice() {
+        for (let i=0; i<this.state.shoppingCart.length; i++) {
+            this.state.subTotal += this.state.shoppingCart[i].price;
+            console.log(this.state.subTotal);
         }
     }
 
-    handleModal() {
-        this.setState({ show: !this.state.show })
-    }
-
-    submitReview(e) {
-
-    }
-
-    changeRating(newRating, name) {
-        this.setState({ rating: newRating })
-    }
-
     render() {
-        const { params } = this.props.match;
+        console.log(this.state.shoppingCart);
+        const shoppingCart = this.state.shoppingCart;
+        const subTotal = this.state.subTotal;
         return (
             <div>
-                <Jumbotron>
-                    <h1>{params.User}</h1>
-                    <Form>
-                        <Form.Group as={Row} controlId="formPlaintextEmail">
-                            <Col sm="10">
-                                <Form.Control plaintext readOnly defaultValue="" />
-                            </Col>
-                        </Form.Group>
-                    </Form>
+                <h2 className="h2 text-left ml-4 my-5">Your Shopping Cart</h2>
+                {shoppingCart ? (
+                    <div className="container mt-lg-5">
+                        <div className="row">
+                            <div className="col-lg">
+                                <div className="container">
+                                    {shoppingCart.map((item, index) => (
+                                        <div className="row">
+                                            <div className="col">
+                                                {item.name}
+                                            </div>
+                                            <div className="col">
+                                                {item.price}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <h3>Subtotal: {subTotal.toFixed(2)}</h3>
+                            </div>
 
-                </Jumbotron>
-                <br />
-                <h2>Your Shopping Cart</h2>
-                <CardColumns>
-                    {foodMenu.map((item, index) => (
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={FiletOFish} />
-                            <Card.Body>
-                                <Card.Title>{item.name}</Card.Title>
-                                <Card.Text>
-                                    {item.description}
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    ))}
-                </CardColumns>
-                <Button>Checkout</Button>
+                            <div className="col-sm">
+                                <PriceDisplay subTotal={subTotal.toFixed(2)} deliveryFee={this.props.restaurant.deliveryFee}/>
+                                <Button className="btn btn-light roundedCorners">Checkout</Button>
+                            </div>
+                        </div>
+                    </div>
+                ) : <p>Your cart seems to be empty!</p>}
             </div>
         )
     }

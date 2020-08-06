@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Promotions from "../components/Promotions";
 import List from "../components/List"
-import UserService from "../services/user.service";
 
 const list = [
     {
@@ -80,7 +79,7 @@ export default class Main extends Component {
             <div className="container">
                 <Promotions/>
                 <br/>
-                <List restaurants={this.state.restaurants}/>
+                <List restaurants={this.state.restaurants} selectRestaurant={this.props.selectRestaurant}/>
             </div>
         );
     }

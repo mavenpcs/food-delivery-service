@@ -46,7 +46,9 @@ class List extends React.Component {
                                 <span className="hoverable roundedCorners">
                                 <Card.Body>
                                         <Link to={`/restaurants/${item.id}`}
-                                            className="stretched-link green h5">{item.name}</Link>
+                                            className="stretched-link green h5" onClick={() => {
+                                            this.props.selectRestaurant(item)
+                                        }}>{item.name}</Link>
                                     <Card.Text className="brown">
                                         {item.address}
                                     </Card.Text>

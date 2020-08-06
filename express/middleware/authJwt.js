@@ -31,6 +31,9 @@ isCustomer = (req, res, next) => {
                     next();
                     return;
                 }
+                res.status(403).send({
+                    message: 'You are not a customer!'
+                });
             }
         });
     });

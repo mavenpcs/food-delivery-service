@@ -25,7 +25,6 @@ Please check out the following pages via their link:
 ##### Vendors
 - Restaurant application (POST): http://localhost:3000/api/vendor/apply
     - Parameters: userid, name, address, deliveryfee, rating (optional)
-- Get all restaurants (GET): http://localhost:3000/api/vendor/restaurants
 - Add food (POST): http://localhost:3000/api/vendor/add-food
     - Parameters: restaurantid, category (optional), name, price, description
 - Get all foods by restaurant id (GET): http://localhost:3000/api/vendor/foods
@@ -34,6 +33,9 @@ Please check out the following pages via their link:
     - Parameters: id, restaurantid, category(optional), name (optional), price (optional), description (optional)
 
 ##### Customers
+- Get all restaurants (GET): http://localhost:3000/api/vendor/restaurants
+- Get one restaurant by name (GET): http://localhost:3000/api/vendor/get-restaurant
+    - Parameter: name
 - Add review & rating (POST): http://localhost:3000/api/customer/add-review
     - Parameters: restaurantid, rating, comments
 - Get random review (GET): http://localhost:3000/api/customer/get-review

@@ -3,6 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import logo from "../images/DelishLogo.png"
 
 import AuthService from "../services/auth.service";
 
@@ -161,13 +162,7 @@ export default class Register extends Component {
     render() {
         return (
             <div className="authBox-center">
-                <div className="card card-container">
-                    <img
-                        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                        alt="profile-img"
-                        className="profile-img-card"
-                    />
-
+                <div className="card card-container roundedCorners">
                     <Form
                         onSubmit={this.handleRegister}
                         ref={c => {
@@ -180,7 +175,7 @@ export default class Register extends Component {
                                     <label htmlFor="username">Username</label>
                                     <Input
                                         type="text"
-                                        className="form-control"
+                                        className="form-control roundedCorners"
                                         name="username"
                                         value={this.state.username}
                                         onChange={this.onChangeUsername}
@@ -192,7 +187,7 @@ export default class Register extends Component {
                                     <label htmlFor="firstname">First Name</label>
                                     <Input
                                         type="text"
-                                        className="form-control"
+                                        className="form-control roundedCorners"
                                         name="firstname"
                                         value={this.state.firstname}
                                         onChange={this.onChangeFirstname}
@@ -204,7 +199,7 @@ export default class Register extends Component {
                                     <label htmlFor="lastname">Last Name</label>
                                     <Input
                                         type="text"
-                                        className="form-control"
+                                        className="form-control roundedCorners"
                                         name="lastname"
                                         value={this.state.lastname}
                                         onChange={this.onChangeLastname}
@@ -216,7 +211,7 @@ export default class Register extends Component {
                                     <label htmlFor="email">Email</label>
                                     <Input
                                         type="text"
-                                        className="form-control"
+                                        className="form-control roundedCorners"
                                         name="email"
                                         value={this.state.email}
                                         onChange={this.onChangeEmail}
@@ -228,7 +223,7 @@ export default class Register extends Component {
                                     <label htmlFor="phone">Phone</label>
                                     <Input
                                         type="text"
-                                        className="form-control"
+                                        className="form-control roundedCorners"
                                         name="username"
                                         value={this.state.phone}
                                         onChange={this.onChangePhone}
@@ -240,7 +235,7 @@ export default class Register extends Component {
                                     <label htmlFor="password">Password</label>
                                     <Input
                                         type="password"
-                                        className="form-control"
+                                        className="form-control roundedCorners"
                                         name="password"
                                         value={this.state.password}
                                         onChange={this.onChangePassword}
@@ -248,11 +243,11 @@ export default class Register extends Component {
                                     />
                                 </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="vendor">Vendor</label>
+                                <div className="form-check-inline">
+                                    <label htmlFor="vendor">I am a Vendor</label>
                                     <Input
                                         type="checkbox"
-                                        className="form-control"
+                                        className="form-control ml-2"
                                         name="roles"
                                         value={this.state.roles}
                                         onChange={this.onChangeRole}
@@ -260,7 +255,7 @@ export default class Register extends Component {
                                 </div>
 
                                 <div className="form-group">
-                                    <button className="btn btn-primary btn-block">Sign Up</button>
+                                    <button className="btn btn-light roundedCorners">Sign Up</button>
                                 </div>
                             </div>
                         )}

@@ -46,7 +46,35 @@
 }
 
 .authBox-center {
-  width: 300px;
+  width: 479px;
   margin: auto;
   padding-top: 3em;
+}
+
+.logoText {
+  font-size: 24px;
+  margin: auto;
+}
+
+.green {
+  color: green;
+}
+
+.brown {
+  color: #412300;
+}
+
+.roundedCorners{
+  border-radius: 50px;
+  border-color: #412300;
+  object-fit: cover;
+}
+
+.searchBar{
+  font-size: 20px;
+}
+
+span.hoverable:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  background-color: #16412300;
 }

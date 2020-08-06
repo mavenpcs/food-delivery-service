@@ -13,6 +13,7 @@ import AuthService from "./services/auth.service"
 import MyMenu from "./pages/MyMenu";
 import Cart from "./pages/Cart";
 
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -21,10 +22,13 @@ class App extends React.Component {
             isLoaded: false,
             user: "",
             isVendor: false,
-            shoppingCart: ""
+            shoppingCart: "",
+            selectedRestaurant: "",
+            loadingRestaurants: true
         }
 
         this.addtoCart = this.addtoCart.bind(this);
+        this.selectRestaurant = this.selectRestaurant.bind(this);
     }
 
     componentDidMount() {
@@ -47,6 +51,9 @@ class App extends React.Component {
                 isLoaded: true
             });
         }
+
+
+
     }
 
     addtoCart(item) {
@@ -57,6 +64,12 @@ class App extends React.Component {
         });
     }
 
+    selectRestaurant(restaurant) {
+        this.setState({
+            restaurant: restaurant
+        })
+    }
+
 
 
     render() {
@@ -65,15 +78,19 @@ class App extends React.Component {
             <div className="App" align="center">
                 <HeaderBar user={user}/>
                 <BrowserRouter>
-                    <Route exact path="/" component={Main}/>
+                    <Route exact path="/" render={(props) => (
+                        <Main selectRestaurant={this.selectRestaurant}/>
+                    )} />
                     <Route path="/restaurants/:restaurant" render={(props) => (
-                        <Restaurant addToCart={this.addtoCart} />
+                        <Restaurant addToCart={this.addtoCart}/>
                     )} />
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register}/>
                     <Route exact path="/orderhistory" component={OrderHistory}/>
                     <Route exact path="/myMenu" component={MyMenu}/>
-                    <Route exact path="/cart" component={Cart}/>
+                    <Route exact path="/cart" render={(props) => (
+                        <Cart shoppingCart={this.state.shoppingCart} restaurant={this.state.restaurant}/>
+                    )} />
                     {!this.state.isLoggedIn && this.state.isLoaded ? (
                         <Redirect to="/login"/>
                     ) : (
@@ -83,7 +100,6 @@ class App extends React.Component {
                             ) : (
                                 null
                             )}
-
                         </div>
                     )}
                 </BrowserRouter>

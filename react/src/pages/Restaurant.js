@@ -125,8 +125,8 @@ class Restaurant extends React.Component {
                                         <Button onClick={() => {
                                             this.handleModal()
                                         }}>Back to Menu</Button>
-                                        <Link to="/checkout">
-                                            <Button>Checkout</Button>
+                                        <Link to="/cart">
+                                            <Button>To Cart/Checkout</Button>
                                         </Link>
                                     </Modal.Footer>
                                 </Modal>

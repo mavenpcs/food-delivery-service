@@ -23,6 +23,15 @@ class UserService {
     getCustomer() {
         return axios.get(API_URL + 'orderHistory', { headers: authHeader() });
     }
+
+    getAllRestaurants() {
+        return axios.get(API_URL + 'api/vendor/restaurants', { headers: authHeader() });
+    }
+
+    getMenu(restaurantid) {
+        return axios.get(API_URL + 'api/vendor/foods', { headers: authHeader(), body: restaurantid});
+    }
+
 }
 
 export default new UserService();

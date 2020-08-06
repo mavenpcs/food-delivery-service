@@ -13,7 +13,7 @@ module.exports = function(app) {
     });
 
     app.post(
-        API_URL + 'add',
+        API_URL + 'add-food',
         [
             authJwt.verifyToken,
             authJwt.isVendor,
@@ -29,4 +29,13 @@ module.exports = function(app) {
         ],
         controller.getFoodByRestaurantId
     );
+
+    app.post(
+        API_URL + 'edit-food',
+        [
+            authJwt.verifyToken,
+            authJwt.isVendor
+        ],
+        controller.edit
+    )
 };

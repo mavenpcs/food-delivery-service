@@ -28,6 +28,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         phone: {
             type: Sequelize.STRING
+        },
+        address: {
+            type: Sequelize.STRING,
+            allowNull: false
         }
     });
 

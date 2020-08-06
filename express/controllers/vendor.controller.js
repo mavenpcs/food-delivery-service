@@ -22,11 +22,26 @@ exports.getAllRestaurants = (req, res) => {
         if (restaurants) {
             res.status(200).send(restaurants);
         } else {
-            res.status(404).send({ message: 'No restaurants found.'});
-            return;
+            return res.status(404).send({ message: 'No restaurants found.'});
         }
     })
     .catch(err => {
         res.status(500).send({ message: err.message })
-    })
+    });
 };
+
+exports.getRestaurantByName = (req, res) => {
+    Restaurant.findOne({
+        where: {
+            name: req.body.name
+        }
+    }).then(restaurant => {
+        if (restaurant) {
+            res.status(200).send(restaurant);
+        } else {
+            return res.status(404).send({ message: 'Restaurant not found.'});
+        }
+    }).catch(err => {
+        res.status(500).send({ message: err.message })
+    });
+}

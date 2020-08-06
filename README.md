@@ -1,15 +1,19 @@
 # Run React from /react
 npm start (runs on localhost:8080)
 
-# Run Docker Container From the Root
+# Run Docker Container From the Root (Development Environment)
 - Initial run: docker-compose build && docker-compose up
 - Onwards: docker-compose up
 
 - React: localhost:8080
 - Express: localhost:3000
 
-# Pages To Be Implemented
+# Production Deployment
+- Run docker-compose down && docker system prune -f to make sure you are building on a clean slate
+- docker-compose -f docker-compose.prod.yml build && docker-compose -f docker-compose.prod.yml up
+- React: localhost:1337
 
+# Pages To Be Implemented
 Please check out the following pages via their link:
 - Login: http://localhost:8080/login
 - Register: http://localhost:8080/register

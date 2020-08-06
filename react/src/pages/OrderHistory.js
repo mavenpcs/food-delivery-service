@@ -33,25 +33,53 @@ const foodMenu = [
    
 ];
 
+const validateComment = value => {
+    if (value.length > 500) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                Comment exceeds maximum character count of 500.
+            </div>
+        );
+    }
+}
+
 class OrderHistory extends React.Component {
     constructor() {
         super()
         this.state = {
             show: false,
-            rating: 0
+            rating: 0,
+            comment: ''
 		}
     }
 
     handleModal() {
         this.setState({ show: !this.state.show })
+        // Clear changes to ratings.
+        this.setState({ rating: 0 });
+        this.setState({ comment: '' });
     }
 
-    submitReview(e) {
-
+    handleValidation() {
+        let sRating = this.state.rating;
     }
+
+    submitReview() {
+        if (this.handleValidation()) {
+            alert("Ensure you have given a star rating and your comments are less than 500 characters long!")
+        } else {
+            alert("Thank you for sharing your experience!")
+            this.handleModal();
+        }
+    }
+
 
     changeRating = (newRating, name) => {
         this.setState({ rating: newRating });
+    }
+
+    updateComment = (newComment, name) => {
+        this.setState({ comment: newComment });
     }
 
     render() {
@@ -92,14 +120,25 @@ class OrderHistory extends React.Component {
                                 name='rating'
                             />
                             <Form.Group controlId="reviewForm.Comments">
-                                <Form.Label>Comments (Character limit: 500)</Form.Label>
-                                <Form.Control as="textarea" rows="5" />
+                                <Form.Label>Comments:</Form.Label>
+                                <Form.Control as="textarea"
+                                    type="text"
+                                    placeholder="Any compliments to the establishment?"
+                                    maxLength={250}
+                                    rows="5"
+                                    value={this.state.comment}
+                                    onChange={this.updateComment.bind(this)}
+                                    aria-describedby="CommentsHelpBlock"
+                                />
+                                <Form.Text id="CommentsHelpBlock" muted>
+                                    Maximum 250 characters for comments.
+                                </Form.Text>
                             </Form.Group>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={() => { this.handleModal() }}>Cancel</Button>
-                        <Button>Submit</Button>
+                        <Button onClick={() => { this.submitReview() }}>Submit</Button>
                     </Modal.Footer>
                 </Modal>
                 <CardColumns>

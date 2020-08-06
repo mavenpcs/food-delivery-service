@@ -8,10 +8,10 @@ import BubbleWaffle from "../images/BubbleWaffle.jpg"
 class Promotions extends React.Component {
     render() {
         return (
-            <Carousel className="mw-500 ">
+            <Carousel>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100 roundedCorners"
+                        className="d-block w-100"
                         src={beefNoodle}
                         alt="First slide"
                         height="300"
@@ -26,7 +26,7 @@ class Promotions extends React.Component {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100 roundedCorners"
+                        className="d-block w-100"
                         src={Neptune}
                         alt="Second slide"
                         height="300"
@@ -41,7 +41,7 @@ class Promotions extends React.Component {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100 roundedCorners"
+                        className="d-block w-100"
                         src={BubbleWaffle}
                         alt="Third slide"
                         height="300"

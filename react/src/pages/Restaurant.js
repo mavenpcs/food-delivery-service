@@ -1,6 +1,6 @@
 import React from 'react';
 import {withRouter} from "react-router";
-import {Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row} from "react-bootstrap";
+import {Button, Card, CardColumns, CardDeck, Col, Form, Jumbotron, Modal, Row} from "react-bootstrap";
 import placeholderImage from "../images/placeholder.jpg"
 import {Link} from "react-router-dom";
 
@@ -92,13 +92,13 @@ class Restaurant extends React.Component {
 
                 </Jumbotron>
                 <br/>
-                <h2>Menu</h2>
-                <CardColumns>
+                <h2 className="green">Menu</h2>
+
+                <CardDeck className="mx-lg-5 my-lg-5">
                     {foodMenu.map((item, index) => (
-                        <Card style={{width: '18rem'}} key={index}>
-                            <Card.Img variant="top" src={placeholderImage}/>
+                        <Card  className="menuCard my-lg-3 roundedCorners hoverable" style={{width: '18rem'}} key={index}>
                             <Card.Body>
-                                <Card.Title>{item.name}</Card.Title>
+                                <Card.Title className="green">{item.name}</Card.Title>
                                 <Card.Text>
                                     {item.description}
                                 </Card.Text>
@@ -106,8 +106,8 @@ class Restaurant extends React.Component {
                                     {item.price}
                                 </Card.Text>
                             </Card.Body>
-                            <Card.Body>
-                                <Button onClick={() => {
+
+                                <Button className="btn btn-light roundedCorners my-2 my-sm-0 align-bottom" onClick={() => {
                                     this.handleCart(item);
                                 }}>Add to Cart</Button>
                                 <Modal
@@ -122,18 +122,18 @@ class Restaurant extends React.Component {
                                     </Modal.Body>
                                     <Modal.Footer>
 
-                                        <Button onClick={() => {
+                                        <Button className="btn btn-light roundedCorners my-2 my-sm-0" onClick={() => {
                                             this.handleModal()
                                         }}>Back to Menu</Button>
                                         <Link to="/cart">
-                                            <Button>To Cart/Checkout</Button>
+                                            <Button className="btn btn-light roundedCorners my-2 my-sm-0">To Cart/Checkout</Button>
                                         </Link>
                                     </Modal.Footer>
                                 </Modal>
-                            </Card.Body>
+
                         </Card>
                     ))}
-                </CardColumns>
+                </CardDeck>
             </div>
         )
     }

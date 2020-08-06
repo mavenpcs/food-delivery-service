@@ -82,7 +82,7 @@ class App extends React.Component {
                         <Main selectRestaurant={this.selectRestaurant}/>
                     )} />
                     <Route path="/restaurants/:restaurant" render={(props) => (
-                        <Restaurant addToCart={this.addtoCart}/>
+                        <Restaurant addToCart={this.addtoCart} restaurant={this.state.restaurant}/>
                     )} />
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register}/>

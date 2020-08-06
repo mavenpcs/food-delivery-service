@@ -2,73 +2,82 @@ import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Promotions from "../components/Promotions";
 import List from "../components/List"
-
-const list = [
-    {
-        id: 'McDonalds',
-        name: "McDonald's",
-        address: '1111 Fries Street',
-        rating: 4.3,
-        deliveryFee: 2.99,
-        hours: "24/7"
-    },
-    {
-        id: 'KFC',
-        name: 'KFC',
-        address: '9876 Chicken Ave',
-        rating: 3.5,
-        deliveryFee: 0,
-        hours: "9am - 9pm"
-    },
-    {
-        id: 'KFC',
-        name: 'KFC',
-        address: '9876 Chicken Ave',
-        rating: 3.5,
-        deliveryFee: 0,
-        hours: "9am - 9pm"
-    },
-    {
-        id: 'KFC',
-        name: 'KFC',
-        address: '9876 Chicken Ave',
-        rating: 3.5,
-        deliveryFee: 0,
-        hours: "9am - 9pm"
-    },
-    {
-        id: 'KFC',
-        name: 'KFC',
-        address: '9876 Chicken Ave',
-        rating: 3.5,
-        deliveryFee: 0,
-        hours: "9am - 9pm"
-    },
-];
+import UserService from "../services/user.service"
+// const list = [
+//     {
+//         id: 'McDonalds',
+//         name: "McDonald's",
+//         address: '1111 Fries Street',
+//         rating: 4.3,
+//         deliveryFee: 2.99,
+//         hours: "24/7"
+//     },
+//     {
+//         id: 'KFC',
+//         name: 'KFC',
+//         address: '9876 Chicken Ave',
+//         rating: 3.5,
+//         deliveryFee: 0,
+//         hours: "9am - 9pm"
+//     },
+//     {
+//         id: 'KFC',
+//         name: 'KFC',
+//         address: '9876 Chicken Ave',
+//         rating: 3.5,
+//         deliveryFee: 0,
+//         hours: "9am - 9pm"
+//     },
+//     {
+//         id: 'KFC',
+//         name: 'KFC',
+//         address: '9876 Chicken Ave',
+//         rating: 3.5,
+//         deliveryFee: 0,
+//         hours: "9am - 9pm"
+//     },
+//     {
+//         id: 'KFC',
+//         name: 'KFC',
+//         address: '9876 Chicken Ave',
+//         rating: 3.5,
+//         deliveryFee: 0,
+//         hours: "9am - 9pm"
+//     },
+// ];
 
 export default class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoadingRestaurants: true,
-            restaurants: list
+            restaurants: []
         }
     }
 
     componentDidMount() {
-        // UserService.getAllRestaurants().then(
-        //     response => {
-        //         console.log(response);
-        //         this.setState({
-        //             loadingRestaurants: false,
-        //
-        //         })
-        //     }
-        // )
-        //
+        UserService.getAllRestaurants().then(
+            response => {
+                console.log(response);
+                this.setState({
+                    isLoadingRestaurants: false,
+                    restaurants: JSON.parse(response.request.response)
+
+                })
+            }
+        ).catch(
+            error => {
+                console.log(error);
+            }
+        )
+
         // UserService.getMenu(2).then(
         //     response => {
         //         console.log(response);
+        //     }
+        // ).catch(
+        //     error => {
+        //         console.log(error);
         //     }
         // )
     }
@@ -79,7 +88,10 @@ export default class Main extends Component {
             <div className="container">
                 <Promotions/>
                 <br/>
-                <List restaurants={this.state.restaurants} selectRestaurant={this.props.selectRestaurant}/>
+                {this.state.isLoadingRestaurants ? (<div>Loading...</div>) : (
+                    <List restaurants={this.state.restaurants} selectRestaurant={this.props.selectRestaurant}/>
+                )}
+
             </div>
         );
     }

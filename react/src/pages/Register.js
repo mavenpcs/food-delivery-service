@@ -175,7 +175,7 @@ export default class Register extends Component {
                                     <label htmlFor="username">Username</label>
                                     <Input
                                         type="text"
-                                        className="form-control roundedCorners"
+                                        className="px-2  roundedCorners"
                                         name="username"
                                         value={this.state.username}
                                         onChange={this.onChangeUsername}
@@ -187,7 +187,7 @@ export default class Register extends Component {
                                     <label htmlFor="firstname">First Name</label>
                                     <Input
                                         type="text"
-                                        className="form-control roundedCorners"
+                                        className="px-2 py2 roundedCorners"
                                         name="firstname"
                                         value={this.state.firstname}
                                         onChange={this.onChangeFirstname}
@@ -199,7 +199,7 @@ export default class Register extends Component {
                                     <label htmlFor="lastname">Last Name</label>
                                     <Input
                                         type="text"
-                                        className="form-control roundedCorners"
+                                        className="px-2 py2 roundedCorners"
                                         name="lastname"
                                         value={this.state.lastname}
                                         onChange={this.onChangeLastname}
@@ -211,7 +211,7 @@ export default class Register extends Component {
                                     <label htmlFor="email">Email</label>
                                     <Input
                                         type="text"
-                                        className="form-control roundedCorners"
+                                        className="px-2 py2 roundedCorners"
                                         name="email"
                                         value={this.state.email}
                                         onChange={this.onChangeEmail}
@@ -223,7 +223,7 @@ export default class Register extends Component {
                                     <label htmlFor="phone">Phone</label>
                                     <Input
                                         type="text"
-                                        className="form-control roundedCorners"
+                                        className="px-2 py2 roundedCorners"
                                         name="username"
                                         value={this.state.phone}
                                         onChange={this.onChangePhone}
@@ -235,7 +235,7 @@ export default class Register extends Component {
                                     <label htmlFor="password">Password</label>
                                     <Input
                                         type="password"
-                                        className="form-control roundedCorners"
+                                        className="px-2 py2 roundedCorners"
                                         name="password"
                                         value={this.state.password}
                                         onChange={this.onChangePassword}

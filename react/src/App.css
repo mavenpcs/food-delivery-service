@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: cursive;
 
 }
 
@@ -66,15 +67,28 @@
 
 .roundedCorners{
   border-radius: 50px;
+  border-width: 3px;
   border-color: #412300;
-  object-fit: cover;
+  margin: 10px;
+  padding-bottom: 10px;
 }
 
 .searchBar{
   font-size: 20px;
+  border-color: green;
 }
 
-span.hoverable:hover {
+.hoverable:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   background-color: #16412300;
+}
+
+.menuCard {
+  min-width: 200px;
+}
+
+.border-cart {
+  border-radius: 50px;
+  border-width: 3px;
+  border-color: #412300;
 }

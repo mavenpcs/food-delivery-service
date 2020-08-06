@@ -25,8 +25,18 @@ module.exports = function(app) {
     app.get(
         API_URL + 'restaurants',
         [
-            authJwt.verifyToken
+            authJwt.verifyToken,
+            authJwt.isCustomer
         ],
         controller.getAllRestaurants
-    )
+    );
+
+    app.get(
+        API_URL + 'get-restaurant/:name',
+        [
+            authJwt.verifyToken,
+            authJwt.isCustomer
+        ],
+        controller.getRestaurantByName
+    );
 };

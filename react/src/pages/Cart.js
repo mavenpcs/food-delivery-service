@@ -20,7 +20,7 @@ class Cart extends React.Component {
     }
 
     calculatePrice() {
-        for (let i=0; i<this.state.shoppingCart.length; i++) {
+        for (let i = 0; i < this.state.shoppingCart.length; i++) {
             this.state.subTotal += this.state.shoppingCart[i].price;
             console.log(this.state.subTotal);
         }
@@ -32,12 +32,12 @@ class Cart extends React.Component {
         const subTotal = this.state.subTotal;
         return (
             <div>
-                <h2 className="h2 text-left ml-4 my-5">Your Shopping Cart</h2>
+                <h2 className="h2  ml-4 my-5 green">Your Shopping Cart</h2>
                 {shoppingCart ? (
                     <div className="container mt-lg-5">
                         <div className="row">
-                            <div className="col-lg">
-                                <div className="container">
+                            <div className="col-lg   ">
+                                <div className="container mx-auto my-lg-5">
                                     {shoppingCart.map((item, index) => (
                                         <div className="row">
                                             <div className="col">
@@ -49,12 +49,15 @@ class Cart extends React.Component {
                                         </div>
                                     ))}
                                 </div>
-                                <h3>Subtotal: {subTotal.toFixed(2)}</h3>
+                                <h3 className="green">Subtotal: {subTotal.toFixed(2)}</h3>
                             </div>
 
-                            <div className="col-sm">
-                                <PriceDisplay subTotal={subTotal.toFixed(2)} deliveryFee={this.props.restaurant.deliveryFee}/>
-                                <Button className="btn btn-light roundedCorners">Checkout</Button>
+                            <div className="col-sm ">
+                                <div className="my-lg-5">
+                                    <PriceDisplay subTotal={subTotal.toFixed(2)}
+                                                  deliveryFee={this.props.restaurant.deliveryfee}/>
+                                    <Button className="btn btn-light roundedCorners">Checkout</Button>
+                                </div>
                             </div>
                         </div>
                     </div>

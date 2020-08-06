@@ -101,7 +101,7 @@ export default class Login extends Component {
                             <label htmlFor="username">Username</label>
                             <Input
                                 type="text"
-                                className="form-control roundedCorners"
+                                className="px-2 py-2 roundedCorners"
                                 name="username"
                                 value={this.state.username}
                                 onChange={this.onChangeUsername}
@@ -113,7 +113,7 @@ export default class Login extends Component {
                             <label htmlFor="password">Password</label>
                             <Input
                                 type="password"
-                                className="form-control roundedCorners"
+                                className="px-2 py-2 roundedCorners"
                                 name="password"
                                 value={this.state.password}
                                 onChange={this.onChangePassword}

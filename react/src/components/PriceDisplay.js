@@ -6,6 +6,7 @@ class SearchBar extends React.Component {
         const {subTotal, deliveryFee} = this.props;
         const taxes = (Math.round((subTotal * 0.05) * 100) / 100).toFixed(2);
         const total =  (Math.round((parseFloat(subTotal) + deliveryFee + parseFloat(taxes))* 100) / 100).toFixed(2);
+
         return (
             <div>
                 <div><p>Subtotal: {subTotal}</p></div>

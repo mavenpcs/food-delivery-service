@@ -16,7 +16,8 @@ exports.signup = (req, res) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
-        phone: req.body.phone
+        phone: req.body.phone,
+        address: req.body.address
     }).then(user => {
         if (req.body.roles) {
             Role.findAll({
@@ -79,6 +80,7 @@ exports.signin = (req, res) => {
                 lastname: user.lastname,
                 email: user.email,
                 phone: user.phone,
+                address: user.address,
                 roles: authorities,
                 accessToken: token
             });

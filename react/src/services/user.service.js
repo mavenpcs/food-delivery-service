@@ -9,11 +9,11 @@ class UserService {
     }
 
     getVendorBoard() {
-        return axios.get(API_URL + 'vendor', { headers: authHeader() });
+        return axios.get(API_URL + 'vendor', {headers: authHeader()});
     }
 
     getAdminBoard() {
-        return axios.get(API_URL + 'admin', { headers: authHeader() });
+        return axios.get(API_URL + 'admin', {headers: authHeader()});
     }
 
     getTestBoard() {
@@ -21,15 +21,17 @@ class UserService {
     }
 
     getCustomer() {
-        return axios.get(API_URL + 'orderHistory', { headers: authHeader() });
+        return axios.get(API_URL + 'orderHistory', {headers: authHeader()});
     }
 
     getAllRestaurants() {
-        return axios.get(API_URL + 'api/vendor/restaurants', { headers: authHeader() });
+        return axios.get(API_URL + 'api/vendor/restaurants', {headers: authHeader()});
     }
 
-    getMenu(restaurantid) {
-        return axios.get(API_URL + 'api/vendor/foods', { headers: authHeader(), body: restaurantid});
+    getMenu(restaurantId) {
+        return axios.get(API_URL + 'api/vendor/foods/'.concat(restaurantId), {
+            headers: authHeader()
+        });
     }
 
 }

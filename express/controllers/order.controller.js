@@ -14,7 +14,7 @@ exports.order = (req, res) => {
     });
 };
 
-exports.getorders = (req, res) => {
+exports.getOrders = (req, res) => {
     // Get all orders by user id
     Order.findAll({
         where: {

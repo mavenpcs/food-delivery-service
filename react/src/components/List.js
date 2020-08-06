@@ -15,10 +15,6 @@ class List extends React.Component {
         this.handleSearchInput = this.handleSearchInput.bind(this);
     }
 
-    componentDidMount() {
-        console.log(this.state)
-
-    }
 
     handleSearchInput(event) {
         let searchQuery = event.target.value.toLowerCase(),
@@ -42,18 +38,17 @@ class List extends React.Component {
 
                         {items.map((item, index) => (
 
-                            <Card className="roundedCorners" style={{margin: 1 + 'em'}} key={index}>
-                                <span className="hoverable roundedCorners">
+                            <Card className="roundedCorners hoverable roundedCorners" style={{margin: 1 + 'em'}} key={index}>
                                 <Card.Body>
                                         <Link to={`/restaurants/${item.id}`}
-                                            className="stretched-link green h5" onClick={() => {
+                                            className="stretched-link green h3" onClick={() => {
                                             this.props.selectRestaurant(item)
                                         }}>{item.name}</Link>
                                     <Card.Text className="brown">
                                         {item.address}
                                     </Card.Text>
                                     <Card.Text className="brown">
-                                        Hours: {item.hours}
+                                        Delivery fee: {item.deliveryfee}
                                     </Card.Text>
                                     <Ratings
                                         rating={item.rating}
@@ -64,9 +59,7 @@ class List extends React.Component {
                                         <Ratings.Widget/>
                                         <Ratings.Widget/>
                                     </Ratings>
-
                                 </Card.Body>
-                                </span>
                             </Card>
 
                         ))}

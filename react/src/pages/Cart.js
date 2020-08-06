@@ -55,7 +55,7 @@ class Cart extends React.Component {
                             <div className="col-sm ">
                                 <div className="my-lg-5">
                                     <PriceDisplay subTotal={subTotal.toFixed(2)}
-                                                  deliveryFee={this.props.restaurant.deliveryFee}/>
+                                                  deliveryFee={this.props.restaurant.deliveryfee}/>
                                     <Button className="btn btn-light roundedCorners">Checkout</Button>
                                 </div>
                             </div>

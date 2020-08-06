@@ -19,7 +19,7 @@ exports.add = (req, res) => {
 exports.getFoodByRestaurantId = (req, res) => {
     Food.findAll({
         where: {
-           restaurant_id: req.body.restaurantid 
+           restaurant_id: req.params.restaurantid 
         }
     }).then(foods => {
         if (foods) {

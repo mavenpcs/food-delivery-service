@@ -32,7 +32,7 @@ module.exports = function(app) {
     );
 
     app.get(
-        API_URL + 'get-restaurant',
+        API_URL + 'get-restaurant/:name',
         [
             authJwt.verifyToken,
             authJwt.isCustomer

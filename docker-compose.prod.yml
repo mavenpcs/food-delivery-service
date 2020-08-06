@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
+    image: "mariadb:latest"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Root12345
+      MYSQL_DATABASE: food_delivery
+    ports:
+      - "3308:3306"
+    volumes:
+      - db:/data/db:rw
+
+  react:
+    container_name: react
+    build:
+      context: .
+      dockerfile: Dockerfile-prod
+    ports:
+      - '1337:80'
+
+  express:
+    build:
+      context: .
+      dockerfile: Dockerfile-express
+    ports:
+      - 3000:3000
+    volumes:
+      - ./express:/code:rw
+volumes:
+  db:

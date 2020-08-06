@@ -58,7 +58,6 @@ export default class Main extends Component {
     componentDidMount() {
         UserService.getAllRestaurants().then(
             response => {
-                console.log(response);
                 this.setState({
                     isLoadingRestaurants: false,
                     restaurants: JSON.parse(response.request.response)

@@ -28,11 +28,9 @@ class UserService {
         return axios.get(API_URL + 'api/vendor/restaurants', {headers: authHeader()});
     }
 
-    getMenu(restaurantid) {
+    getMenu(name) {
         return axios.get(API_URL + 'api/vendor/foods', {
-            headers: authHeader(), data: {
-                restaurantid: restaurantid
-            }
+            headers: authHeader(), params: name
         });
     }
 

@@ -3,6 +3,7 @@ import {withRouter} from "react-router";
 import {Button, Card, CardColumns, CardDeck, Col, Form, Jumbotron, Modal, Row} from "react-bootstrap";
 import placeholderImage from "../images/placeholder.jpg"
 import {Link} from "react-router-dom";
+import UserService from "../services/user.service";
 
 const foodMenu = [
     {
@@ -60,10 +61,28 @@ class Restaurant extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: false
+            show: false,
+            isLoadingMenu: true,
+            menu: []
         }
 
         this.handleCart = this.handleCart.bind(this);
+    }
+
+    componentDidMount() {
+        UserService.getMenu(this.props.restaurant.name).then(
+            response => {
+                console.log(response);
+                this.setState({
+                    isLoadingRestaurants: false,
+                    menu: JSON.parse(response.request.response)
+                })
+            }
+        ).catch(
+            error => {
+                console.log(error);
+            }
+        )
     }
 
     handleModal() {
@@ -80,7 +99,7 @@ class Restaurant extends React.Component {
         return (
             <div>
                 <Jumbotron>
-                    <h1>{params.restaurant}</h1>
+                    <h1>{params.restaurant.name}</h1>
                     <Form>
                         <Form.Group as={Row} controlId="formPlaintextEmail">
                             <Col sm="10">

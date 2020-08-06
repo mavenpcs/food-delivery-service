@@ -15,10 +15,6 @@ class List extends React.Component {
         this.handleSearchInput = this.handleSearchInput.bind(this);
     }
 
-    componentDidMount() {
-        console.log(this.state.items)
-
-    }
 
     handleSearchInput(event) {
         let searchQuery = event.target.value.toLowerCase(),

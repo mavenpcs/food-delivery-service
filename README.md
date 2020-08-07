@@ -23,7 +23,7 @@ Please check out the following pages via their link:
 ##### All
 - User registration (POST): http://localhost:3000/api/auth/signup
     - Parameters: username, password, firstname, lastname, email (optional), phone (optional), address
-- User login (GET): http://localhost:3000/api/auth/signin
+- User login (POST): http://localhost:3000/api/auth/signin
     - Parameters: username, password
 
 ##### Vendors

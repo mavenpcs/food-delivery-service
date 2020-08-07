@@ -1,7 +1,6 @@
 import React from 'react';
 import {withRouter} from "react-router";
-import {Button, Card, CardColumns, CardDeck, Col, Form, Jumbotron, Modal, Row} from "react-bootstrap";
-import placeholderImage from "../images/placeholder.jpg"
+import {Button, Card, CardDeck, Jumbotron, Modal} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import UserService from "../services/user.service";
 

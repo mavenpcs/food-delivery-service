@@ -3,7 +3,6 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-import logo from "../images/DelishLogo.png"
 
 import AuthService from "../services/auth.service";
 
@@ -58,6 +57,7 @@ export default class Register extends Component {
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeRole = this.onChangeRole.bind(this);
+        this.onChangeAddress = this.onChangeAddress.bind(this);
 
         this.state = {
             username: "",
@@ -67,6 +67,7 @@ export default class Register extends Component {
             phone: "",
             password: "",
             roles: "",
+            address: "",
             successful: false,
             message: ""
         };
@@ -114,6 +115,13 @@ export default class Register extends Component {
         });
     }
 
+    onChangeAddress(e) {
+        this.setState({
+            address: e.target.value
+        });
+    }
+
+
     handleRegister(e) {
         e.preventDefault();
 
@@ -132,7 +140,8 @@ export default class Register extends Component {
                 this.state.lastname,
                 this.state.email,
                 this.state.phone,
-                this.state.roles
+                this.state.roles,
+                this.state.address
             ).then(
                 response => {
                     this.setState({
@@ -227,6 +236,18 @@ export default class Register extends Component {
                                         name="username"
                                         value={this.state.phone}
                                         onChange={this.onChangePhone}
+                                        validations={[required]}
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="address">Address</label>
+                                    <Input
+                                        type="text"
+                                        className="px-2 py2 roundedCorners"
+                                        name="address"
+                                        value={this.state.address}
+                                        onChange={this.onChangeAddress}
                                         validations={[required]}
                                     />
                                 </div>

@@ -1,61 +1,60 @@
 import React from 'react';
+import UserService from "../services/user.service";
+import ReviewService from "../services/review.service";
 import axios from "axios";
 import { withRouter } from "react-router";
 import { Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row } from "react-bootstrap";
 import StarRating from "react-star-ratings";
+
 const REVIEW_API_URL = " http://localhost:3000/api/customer/add-review";
 
-import FiletOFish from "../images/mcdonalds-filet-o-fish.jpg"
-
-// Place holder for now
-const foodMenu = [
-    {
-        id: '0',
-        category: "Burgers",
-        restaurant_name: "McDonald's",
-        name: 'Big Mac',
-        price: 4.99,
-        description: 'this is a Big Mac with 9999999999999999999 Calories'
-    },
-    {
-        id: '2',
-        category: "Burgers",
-        restaurant_name: "McDonald's",
-        name: 'Quarter Pounder',
-        price: 5.99,
-        description: 'Contains Cheese'
-    },
-    {
-        id: '5',
-        category: "Sandwiches",
-        restaurant_name: "McDonald's",
-        name: 'Filet O Fish',
-        price: 5.19,
-        description: 'Irresistibly fishy'
-    },
-   
-];
-
-const validateComment = value => {
-    if (value.length > 500) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                Comment exceeds maximum character count of 500.
-            </div>
-        );
-    }
-}
-
 class OrderHistory extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+        this.submitReview = this.submitReview.bind(this);
         this.state = {
+            user: this.props.user,
             show: false,
-            rating: 0,
+            rating: 3,
             comment: '',
             restaurantID: 0,
-            comment: ''
-		}
+            resturantIDentry: [],
+            restaurants: [],
+            orders: [],
+            lastOrder: [], 
+            orderItems: []
+        }  
+    }
+
+    componentDidMount() {
+        UserService.getOrders(4).then(
+            response => {
+                console.log(response);
+                this.setState({
+                    orders: JSON.parse(response.request.response)
+                })
+                this.setState({ lastOrder: this.order[this.order.length - 1] })
+                
+            }
+        ).catch(
+            error => {
+                console.log(error);
+            }
+        )
+        UserService.getAllRestaurants().then(
+            response => {
+                this.setState({
+                    restaurants: JSON.parse(response.request.response),
+                    restaurantID: restaurants.filter(function (el) {
+                        return el.restaurant_name == lastOrder.restaurant_name
+                    })
+                })
+            }
+        ).catch(
+            error => {
+                console.log(error);
+            }
+        )
     }
 
     handleModal() {
@@ -65,49 +64,34 @@ class OrderHistory extends React.Component {
         this.setState({ comment: '' });
     }
 
-    handleValidation() {
-        let sRating = this.state.rating;
-    }
-
-    submitReview() {
-        if (this.handleValidation()) {
-            alert("Ensure you have given a star rating and your comments are less than 500 characters long!")
-        } else {
-            axios.post(REVIEW_API_URL, { this.state.rating });
-            alert("Thank you for sharing your experience!")
-            this.handleModal();
-        }
-    }
-
-
     changeRating = (newRating, name) => {
         this.setState({ rating: newRating });
     }
+    onChangeComment = (e) => {
+        this.setState({
+            comment: e.target.value
+        });
+    }
 
-    updateComment = (newComment, name) => {
-        this.setState({ comment: newComment });
+    submitReview() {
+        ReviewService.addReview(this.state.restaurantID, this.state.rating, this.state.comment).then(
+            response => {
+                console.log(response);
+            },
+            error => {
+                console.log(error);
+            }
+        );
+        alert("Thank you for sharing your experience!")
+        this.handleModal();
     }
 
     render() {
-        const { params } = this.props.match;
-        const { rating } = this.state;
         return (
             <div>
-                <Jumbotron>
-                    <h1>{params.User}</h1>
-                    <Form>
-                        <Form.Group as={Row} controlId="formPlaintextEmail">
-                            <Col sm="10">
-                                <Form.Control plaintext readOnly defaultValue="" />
-                            </Col>
-                        </Form.Group>
-                    </Form>
-
-                </Jumbotron>
                 <br/>
                 <h2>Your last Order</h2>
                 <br />
-                <Button onClick={() => { this.handleModal() }}>Leave the Restaurant a Review</Button>
                 <Modal
                     show={this.state.show}
                     onHide={() => this.handleModal()}
@@ -133,11 +117,11 @@ class OrderHistory extends React.Component {
                                     maxLength={250}
                                     rows="5"
                                     value={this.state.comment}
-                                    onChange={this.updateComment.bind(this)}
+                                    onChange={this.onChangeComment}
                                     aria-describedby="CommentsHelpBlock"
                                 />
                                 <Form.Text id="CommentsHelpBlock" muted>
-                                    Maximum 250 characters for comments.
+                                    If you have any complaints, make sure you've tried contacting the establishment for assistance first.
                                 </Form.Text>
                             </Form.Group>
                         </Form>
@@ -148,14 +132,15 @@ class OrderHistory extends React.Component {
                     </Modal.Footer>
                 </Modal>
                 <CardColumns>
-                {foodMenu.map((item, index) => (
+                {this.state.lastOrder.map((item, index) => (
                 <Card style={{ width: '18rem' }}>
                     <Card.Body>
-                        <Card.Title>{item.name}</Card.Title>
-                        <Card.Text>
-                            {item.description}
-                        </Card.Text>
-                    </Card.Body>
+                            <Card.Title>{item.restaurant_name}</Card.Title>
+                            <Card.Text>
+                                Subtotal: ${item.price}
+                            </Card.Text>
+                        </Card.Body>
+                    <Button onClick={() => { this.handleModal() }}>Leave the Restaurant a Review</Button>
                 </Card>
                 ))}
                 </CardColumns>

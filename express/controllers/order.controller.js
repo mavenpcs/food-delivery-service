@@ -59,6 +59,7 @@ exports.getOrders = (req, res) => {
                     // Construct an orderItem object
                     let orderItem = {
                         "id": order.id,
+                        "restaurant_id": order.restaurant_id,
                         "restaurant_name": restaurantName.name,
                         "subtotal": parseFloat(subtotal.toFixed(2)),
                         "date": moment(order.createdAt).format('MMMM Do YYYY, h:mm:ss a')

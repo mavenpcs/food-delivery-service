@@ -56,6 +56,8 @@ export default class Register extends Component {
         this.onChangePhone = this.onChangePhone.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeRole = this.onChangeRole.bind(this);
+        this.onChangeAddress = this.onChangeAddress.bind(this);
 
         this.state = {
             username: "",
@@ -64,6 +66,8 @@ export default class Register extends Component {
             lastname: "",
             phone: "",
             password: "",
+            roles: "",
+            address: "",
             successful: false,
             message: ""
         };
@@ -105,6 +109,19 @@ export default class Register extends Component {
         });
     }
 
+    onChangeRole(e) {
+        this.setState({
+            roles: ["vendor"]
+        });
+    }
+
+    onChangeAddress(e) {
+        this.setState({
+            address: e.target.value
+        });
+    }
+
+
     handleRegister(e) {
         e.preventDefault();
 
@@ -122,14 +139,16 @@ export default class Register extends Component {
                 this.state.firstname,
                 this.state.lastname,
                 this.state.email,
-                this.state.phone
+                this.state.phone,
+                this.state.roles,
+                this.state.address
             ).then(
                 response => {
                     this.setState({
                         message: response.data.message,
                         successful: true
                     });
-                    this.props.history.push("/login");
+                    this.props.history.push("/");
                     window.location.reload();
                 },
                 error => {
@@ -151,14 +170,8 @@ export default class Register extends Component {
 
     render() {
         return (
-            <div className="col-md-12">
-                <div className="card card-container">
-                    <img
-                        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                        alt="profile-img"
-                        className="profile-img-card"
-                    />
-
+            <div className="authBox-center">
+                <div className="card card-container roundedCorners">
                     <Form
                         onSubmit={this.handleRegister}
                         ref={c => {
@@ -171,7 +184,7 @@ export default class Register extends Component {
                                     <label htmlFor="username">Username</label>
                                     <Input
                                         type="text"
-                                        className="form-control"
+                                        className="px-2  roundedCorners"
                                         name="username"
                                         value={this.state.username}
                                         onChange={this.onChangeUsername}
@@ -183,7 +196,7 @@ export default class Register extends Component {
                                     <label htmlFor="firstname">First Name</label>
                                     <Input
                                         type="text"
-                                        className="form-control"
+                                        className="px-2 py2 roundedCorners"
                                         name="firstname"
                                         value={this.state.firstname}
                                         onChange={this.onChangeFirstname}
@@ -195,7 +208,7 @@ export default class Register extends Component {
                                     <label htmlFor="lastname">Last Name</label>
                                     <Input
                                         type="text"
-                                        className="form-control"
+                                        className="px-2 py2 roundedCorners"
                                         name="lastname"
                                         value={this.state.lastname}
                                         onChange={this.onChangeLastname}
@@ -207,7 +220,7 @@ export default class Register extends Component {
                                     <label htmlFor="email">Email</label>
                                     <Input
                                         type="text"
-                                        className="form-control"
+                                        className="px-2 py2 roundedCorners"
                                         name="email"
                                         value={this.state.email}
                                         onChange={this.onChangeEmail}
@@ -219,7 +232,7 @@ export default class Register extends Component {
                                     <label htmlFor="phone">Phone</label>
                                     <Input
                                         type="text"
-                                        className="form-control"
+                                        className="px-2 py2 roundedCorners"
                                         name="username"
                                         value={this.state.phone}
                                         onChange={this.onChangePhone}
@@ -228,10 +241,22 @@ export default class Register extends Component {
                                 </div>
 
                                 <div className="form-group">
+                                    <label htmlFor="address">Address</label>
+                                    <Input
+                                        type="text"
+                                        className="px-2 py2 roundedCorners"
+                                        name="address"
+                                        value={this.state.address}
+                                        onChange={this.onChangeAddress}
+                                        validations={[required]}
+                                    />
+                                </div>
+
+                                <div className="form-group">
                                     <label htmlFor="password">Password</label>
                                     <Input
                                         type="password"
-                                        className="form-control"
+                                        className="px-2 py2 roundedCorners"
                                         name="password"
                                         value={this.state.password}
                                         onChange={this.onChangePassword}
@@ -239,8 +264,19 @@ export default class Register extends Component {
                                     />
                                 </div>
 
+                                <div className="form-check-inline">
+                                    <label htmlFor="vendor">I am a Vendor</label>
+                                    <Input
+                                        type="checkbox"
+                                        className="form-control ml-2"
+                                        name="roles"
+                                        value={this.state.roles}
+                                        onChange={this.onChangeRole}
+                                    />
+                                </div>
+
                                 <div className="form-group">
-                                    <button className="btn btn-primary btn-block">Sign Up</button>
+                                    <button className="btn btn-light roundedCorners">Sign Up</button>
                                 </div>
                             </div>
                         )}

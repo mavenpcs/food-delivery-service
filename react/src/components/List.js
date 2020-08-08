@@ -4,87 +4,76 @@ import Ratings from 'react-ratings-declarative';
 import {Link} from 'react-router-dom'
 
 
-const list = [
-    {
-        id: 'McDonalds',
-        name: "McDonald's",
-        address: '1111 Fries Street',
-        rating: 4.3,
-        deliveryFee: 2.99,
-        hours: "24/7"
-    },
-    {
-        id: 'KFC',
-        name: 'KFC',
-        address: '9876 Chicken Ave',
-        rating: 3.5,
-        deliveryFee: 0,
-        hours: "9am - 9pm"
-    },
-    {
-        id: 'KFC',
-        name: 'KFC',
-        address: '9876 Chicken Ave',
-        rating: 3.5,
-        deliveryFee: 0,
-        hours: "9am - 9pm"
-    },
-    {
-        id: 'KFC',
-        name: 'KFC',
-        address: '9876 Chicken Ave',
-        rating: 3.5,
-        deliveryFee: 0,
-        hours: "9am - 9pm"
-    },
-    {
-        id: 'KFC',
-        name: 'KFC',
-        address: '9876 Chicken Ave',
-        rating: 3.5,
-        deliveryFee: 0,
-        hours: "9am - 9pm"
-    },
-];
-
 class List extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: this.props.restaurants,
+            filteredItems: this.props.restaurants
+        }
+
+        this.handleSearchInput = this.handleSearchInput.bind(this);
+    }
+
+
+    handleSearchInput(event) {
+        let searchQuery = event.target.value.toLowerCase(),
+            filteredItems = this.state.items.filter((el) => {
+                let searchValue = el.name.toLowerCase();
+                return searchValue.indexOf(searchQuery) !== -1;
+            })
+
+        this.setState({filteredItems: filteredItems});
+    }
 
     render() {
+        const items = Array.from(this.state.filteredItems);
+        if (items) {
+            return (
+                <Form>
+                    <input className="filter form-control roundedCorners searchBar " onInput={this.handleSearchInput}
+                           type="text"
+                           placeholder="Search..."/>
+                    <div>
+
+                        {items.map((item, index) => (
+
+                            <Card className="roundedCorners hoverable roundedCorners" style={{margin: 1 + 'em'}} key={index}>
+                                <Card.Body>
+                                        <Link to={`/restaurants/${item.id}`}
+                                            className="stretched-link green h3" onClick={() => {
+                                            this.props.selectRestaurant(item)
+                                        }}>{item.name}</Link>
+                                    <Card.Text className="brown">
+                                        {item.address}
+                                    </Card.Text>
+                                    <Card.Text className="brown">
+                                        Delivery fee: {item.deliveryfee}
+                                    </Card.Text>
+                                    <Ratings
+                                        rating={item.rating}
+                                        widgetRatedColors="#facc00">
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                        <Ratings.Widget/>
+                                    </Ratings>
+                                </Card.Body>
+                            </Card>
+
+                        ))}
+
+                    </div>
+                </Form>
+            )
+        }
         return (
-            <Form>
-                <div>
-
-                    {list.map((item, index) => (
-                        <Card style={{margin: 1 + 'em'}}>
-                            <Card.Body>
-                                <Link to={`/restaurants/${item.id}`}
-                                      className="stretched-link">{item.name}</Link>
-
-                                <Card.Text>
-                                    {item.address}
-                                </Card.Text>
-                                <Card.Text>
-                                    Hours: {item.hours}
-                                </Card.Text>
-                                <Ratings
-                                    rating={item.rating}
-                                    widgetRatedColors="yellow">
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                    <Ratings.Widget/>
-                                </Ratings>
-
-                            </Card.Body>
-                        </Card>
-
-
-                    ))}
-
-                </div>
-            </Form>
+            <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
         )
+
     }
 }
 

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: cursive;
 
 }
 
@@ -36,4 +37,58 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.right {
+  float: right;
+  width: 300px;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+.authBox-center {
+  width: 479px;
+  margin: auto;
+  padding-top: 3em;
+}
+
+.logoText {
+  font-size: 24px;
+  margin: auto;
+}
+
+.green {
+  color: green;
+}
+
+.brown {
+  color: #412300;
+}
+
+.roundedCorners{
+  border-radius: 50px;
+  border-width: 3px;
+  border-color: #412300;
+  margin: 10px;
+  padding-bottom: 10px;
+}
+
+.searchBar{
+  font-size: 20px;
+  border-color: green;
+}
+
+.hoverable:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  background-color: #16412300;
+}
+
+.menuCard {
+  min-width: 200px;
+}
+
+.border-cart {
+  border-radius: 50px;
+  border-width: 3px;
+  border-color: #412300;
 }

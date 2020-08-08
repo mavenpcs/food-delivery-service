@@ -6,11 +6,12 @@ import {Redirect, Route} from "react-router";
 import {BrowserRouter} from "react-router-dom";
 import Main from "./pages/Main";
 import Restaurant from "./pages/Restaurant";
-import SearchBar from "./components/SearchBar";
 import Login from "./pages/Login"
 import Register from "./pages/Register";
 import OrderHistory from "./pages/OrderHistory";
 import AuthService from "./services/auth.service"
+import MyMenu from "./pages/MyMenu";
+import Cart from "./pages/Cart";
 
 
 class App extends React.Component {
@@ -18,18 +19,31 @@ class App extends React.Component {
         super(props);
         this.state = {
             isLoggedIn: false,
-            isLoaded: false
+            isLoaded: false,
+            user: "",
+            isVendor: false,
+            shoppingCart: "",
+            selectedRestaurant: "",
+            loadingRestaurants: true
         }
+
+        this.addtoCart = this.addtoCart.bind(this);
+        this.selectRestaurant = this.selectRestaurant.bind(this);
     }
 
     componentDidMount() {
         const user = AuthService.getCurrentUser();
         if (user) {
-            console.log(user);
             this.setState({
                 isLoggedIn: true,
-                isLoaded: true
+                isLoaded: true,
+                user: user
             });
+            if (user.roles == "ROLE_VENDOR") {
+                this.setState({
+                    isVendor: true
+                })
+            }
         }
         else {
             this.setState({
@@ -37,24 +51,56 @@ class App extends React.Component {
                 isLoaded: true
             });
         }
+
+
+
     }
 
-    render() {
+    addtoCart(item) {
+        this.setState(prevState => ({
+            shoppingCart: [...prevState.shoppingCart, item]
+        }), () => {
+            console.log(this.state.shoppingCart);
+        });
+    }
 
+    selectRestaurant(restaurant) {
+        this.setState({
+            restaurant: restaurant
+        })
+    }
+
+
+
+    render() {
+        const user = this.state
         return (
             <div className="App" align="center">
-                <HeaderBar/>
-                <SearchBar/>
+                <HeaderBar user={user}/>
                 <BrowserRouter>
-                    <Route exact path="/" component={Main}/>
-                    <Route path="/restaurants/:restaurant" component={Restaurant}/>
+                    <Route exact path="/" render={(props) => (
+                        <Main selectRestaurant={this.selectRestaurant}/>
+                    )} />
+                    <Route path="/restaurants/:restaurant" render={(props) => (
+                        <Restaurant addToCart={this.addtoCart} restaurant={this.state.restaurant}/>
+                    )} />
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register}/>
                     <Route exact path="/orderhistory" component={OrderHistory}/>
+                    <Route exact path="/myMenu" component={MyMenu}/>
+                    <Route exact path="/cart" render={(props) => (
+                        <Cart shoppingCart={this.state.shoppingCart} restaurant={this.state.restaurant}/>
+                    )} />
                     {!this.state.isLoggedIn && this.state.isLoaded ? (
                         <Redirect to="/login"/>
                     ) : (
-                        <div></div>
+                        <div>
+                            {this.state.isVendor ? (
+                                <Redirect to={"/myMenu"}/>
+                            ) : (
+                                null
+                            )}
+                        </div>
                     )}
                 </BrowserRouter>
             </div>

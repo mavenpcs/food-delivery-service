@@ -5,6 +5,7 @@ import { Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row } from "rea
 import StarRating from "react-star-ratings";
 const REVIEW_API_URL = " http://localhost:3000/api/customer/add-review";
 
+import FiletOFish from "../images/mcdonalds-filet-o-fish.jpg"
 
 // Place holder for now
 const foodMenu = [
@@ -52,7 +53,8 @@ class OrderHistory extends React.Component {
             show: false,
             rating: 0,
             comment: '',
-            restaurantID: 0
+            restaurantID: 0,
+            comment: ''
 		}
     }
 

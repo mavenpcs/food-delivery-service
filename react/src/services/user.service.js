@@ -34,6 +34,12 @@ class UserService {
         });
     }
 
+    getOrders(userId) {
+        return axios.get(API_URL + 'api/customer/get-orders/'.concat(userId), {
+            headers: authHeader()
+        });
+    }
+
 }
 
 export default new UserService();

@@ -5,7 +5,7 @@ module.exports = {
     DB: 'food_delivery',
     dialect: 'mysql',
     define: {
-        timestamps: false,
+        timestamps: true,
         freezeTableName: true
     },
     pool: {

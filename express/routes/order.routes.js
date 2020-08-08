@@ -13,20 +13,20 @@ module.exports = function(app) {
     });
 
     app.post(
-        API_URL + 'order',
+        API_URL + 'checkout',
         [
             authJwt.verifyToken,
             authJwt.isCustomer,
         ],
-        controller.order
+        controller.checkout
     );
 
     app.get(
-        API_URL + 'get-orders',
+        API_URL + 'get-orders/:userid',
         [
             authJwt.verifyToken,
             authJwt.isCustomer
         ],
-        controller.getorders
+        controller.getOrders
     );
 };

@@ -30,6 +30,14 @@ module.exports = (sequelize, Sequelize) => {
         description: {
             type: Sequelize.TEXT
         }
+    }, {
+        indexes: [
+            {
+                name: 'price_index',
+                using: 'BTREE',
+                fields: ['price']
+            }
+        ]
     });
 
     return Food;

@@ -1,8 +1,10 @@
 import React from 'react';
+import axios from "axios";
 import { withRouter } from "react-router";
 import { Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row } from "react-bootstrap";
 import StarRating from "react-star-ratings";
-import FiletOFish from "../images/mcdonalds-filet-o-fish.jpg"
+const REVIEW_API_URL = " http://localhost:3000/api/customer/add-review";
+
 
 // Place holder for now
 const foodMenu = [
@@ -49,7 +51,8 @@ class OrderHistory extends React.Component {
         this.state = {
             show: false,
             rating: 0,
-            comment: ''
+            comment: '',
+            restaurantID: 0
 		}
     }
 
@@ -68,6 +71,7 @@ class OrderHistory extends React.Component {
         if (this.handleValidation()) {
             alert("Ensure you have given a star rating and your comments are less than 500 characters long!")
         } else {
+            axios.post(REVIEW_API_URL, { this.state.rating });
             alert("Thank you for sharing your experience!")
             this.handleModal();
         }
@@ -144,7 +148,6 @@ class OrderHistory extends React.Component {
                 <CardColumns>
                 {foodMenu.map((item, index) => (
                 <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={FiletOFish} />
                     <Card.Body>
                         <Card.Title>{item.name}</Card.Title>
                         <Card.Text>

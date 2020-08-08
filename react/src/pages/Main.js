@@ -70,15 +70,6 @@ export default class Main extends Component {
             }
         )
 
-        // UserService.getMenu(2).then(
-        //     response => {
-        //         console.log(response);
-        //     }
-        // ).catch(
-        //     error => {
-        //         console.log(error);
-        //     }
-        // )
     }
 
     render() {
@@ -87,7 +78,9 @@ export default class Main extends Component {
             <div className="container">
                 <Promotions/>
                 <br/>
-                {this.state.isLoadingRestaurants ? (<div>Loading...</div>) : (
+                {this.state.isLoadingRestaurants ? (<div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>) : (
                     <List restaurants={this.state.restaurants} selectRestaurant={this.props.selectRestaurant}/>
                 )}
 

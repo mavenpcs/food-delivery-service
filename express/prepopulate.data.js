@@ -1,12 +1,7 @@
 const db = require('./models/index');
 const { sequelize } = require('./models/index');
-const Role = db.role;
-const AppUser = db.appuser;
-const Restaurant = db.restaurant;
-const Food = db.food;
 
 var bcrypt = require('bcryptjs');
-const Op = db.Sequelize.Op;
 const sequelize_fixtures = require('sequelize-fixtures');
 
 const fixtures = [

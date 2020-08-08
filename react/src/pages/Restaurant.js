@@ -18,19 +18,21 @@ class Restaurant extends React.Component {
     }
 
     componentDidMount() {
-        UserService.getMenu(this.props.restaurant.id).then(
-            response => {
-                console.log(response);
-                this.setState({
-                    isLoadingMenu: false,
-                    menu: JSON.parse(response.request.response)
-                })
-            }
-        ).catch(
-            error => {
-                console.log(error);
-            }
-        )
+        if (this.props.restaurant) {
+            UserService.getMenu(this.props.restaurant.id).then(
+                response => {
+                    console.log(response);
+                    this.setState({
+                        isLoadingMenu: false,
+                        menu: JSON.parse(response.request.response)
+                    })
+                }
+            ).catch(
+                error => {
+                    console.log(error);
+                }
+            )
+        }
     }
 
     handleModal() {
@@ -45,18 +47,19 @@ class Restaurant extends React.Component {
     render() {
         return (
             <div>
-                <Jumbotron>
-                    <h1>{this.props.restaurant.name}</h1>
-                    <p>{this.props.restaurant.address}</p>
-                    <p>{this.props.restaurant.hours}</p>
-                    <p>{this.props.restaurant.deliveryfee}</p>
-
-
-                </Jumbotron>
+                {this.props.restaurant ? (
+                    <Jumbotron>
+                        <h1>{this.props.restaurant.name}</h1>
+                        <p>{this.props.restaurant.address}</p>
+                        <p>{this.props.restaurant.deliveryfee}</p>
+                    </Jumbotron>
+                ) : null}
                 <br/>
                 <h2 className="green">Menu</h2>
 
-                {this.state.isLoadingMenu ? (<div>loading...</div>) : (
+                {this.state.isLoadingMenu ? (<div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>) : (
                     <CardDeck className="mx-lg-5 my-lg-5">
                         {this.state.menu.map((item, index) => (
                             <Card className="menuCard my-lg-3 roundedCorners hoverable" style={{width: '18rem'}}

@@ -23,10 +23,6 @@ module.exports = function(app) {
 
     app.get(
         API_URL + 'get-review',
-        [
-            authJwt.verifyToken,
-            authJwt.isCustomer
-        ],
         controller.getRandomReview
     );
 

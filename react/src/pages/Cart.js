@@ -1,7 +1,9 @@
 import React from 'react';
-import {withRouter} from "react-router";
+import {withRouter} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import PriceDisplay from "../components/PriceDisplay";
+import AuthService from "../services/auth.service";
+import CartService from "../services/cart.service"
 
 
 class Cart extends React.Component {
@@ -9,13 +11,31 @@ class Cart extends React.Component {
         super(props);
         this.state = {
             shoppingCart: this.props.shoppingCart,
-            subTotal: 0
+            subTotal: 0,
+            isLoggedIn: false,
+            isLoaded: false,
+            user: 0
         }
         this.calculatePrice();
         console.log(this.props.restaurant);
     }
 
     componentDidMount() {
+        const user = AuthService.getCurrentUser();
+        if (user) {
+            this.setState({
+                isLoggedIn: true,
+                isLoaded: true,
+                user: user.id
+            });
+        }
+        else {
+            this.setState({
+                isLoggedIn: false,
+                isLoaded: true
+            });
+        }
+        console.log(user);
         console.log(this.state)
     }
 
@@ -24,6 +44,12 @@ class Cart extends React.Component {
             this.state.subTotal += this.state.shoppingCart[i].price;
             console.log(this.state.subTotal);
         }
+    }
+
+    checkOut() {
+        CartService.checkOut(this.state.user, this.state.shoppingCart[0].restaurant_id, this.state.shoppingCart);
+        alert("Your order is on its way!");
+        this.props.history.push('/');
     }
 
     render() {
@@ -56,7 +82,9 @@ class Cart extends React.Component {
                                 <div className="my-lg-5">
                                     <PriceDisplay subTotal={subTotal.toFixed(2)}
                                                   deliveryFee={this.props.restaurant.deliveryfee}/>
-                                    <Button className="btn btn-light roundedCorners">Checkout</Button>
+                                    <Button className="btn btn-light roundedCorners" onClick={() => {
+                                        this.checkOut()
+                                    }}>Checkout</Button>
                                 </div>
                             </div>
                         </div>

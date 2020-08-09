@@ -1,4 +1,5 @@
 import axios from 'axios';
+import authHeader from './auth-header';
 
 const API_URL = "http://localhost:3000/api/cart/";
 const API_CHECKOUT_URL = "http://localhost:3000/api/customer/checkout"
@@ -23,7 +24,9 @@ class CartService {
             userid: userid,
             restaurantid: restaurantid,
             foods: foods
-        });
+        },
+            { headers: authHeader() }
+        );
     }
 }
 

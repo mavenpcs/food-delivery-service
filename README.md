@@ -41,7 +41,7 @@ Please check out the following pages via their link:
 - Get all foods by restaurant id (GET): http://localhost:3000/api/vendor/foods/:restaurantid
     - Parameter: restaurantid
 - Add review & rating (POST): http://localhost:3000/api/customer/add-review
-    - Parameters: restaurantid, rating, comments
+    - Parameters: orderid, restaurantid, rating, comments
 - Get random review (GET): http://localhost:3000/api/customer/get-review
     - Parameter: restaurantid
 - Get rating (GET): http://localhost:3000/api/customer/get-rating

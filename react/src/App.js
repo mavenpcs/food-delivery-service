@@ -87,8 +87,8 @@ class App extends React.Component {
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register}/>
                     <Route exact path="/orderhistory" render={(props) => (
-                        <OrderHistory user={this.state.user} />
-                    )} />/
+                        <OrderHistory user={user}/>
+                    )} />
                     <Route exact path="/myMenu" component={MyMenu}/>
                     <Route exact path="/cart" render={(props) => (
                         <Cart shoppingCart={this.state.shoppingCart} restaurant={this.state.restaurant}/>

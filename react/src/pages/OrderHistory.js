@@ -1,6 +1,8 @@
 import React from 'react';
 import UserService from "../services/user.service";
 import ReviewService from "../services/review.service";
+import AuthService from "../services/auth.service";
+import Orders from "../components/Order";
 import axios from "axios";
 import { withRouter } from "react-router";
 import { Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row } from "react-bootstrap";
@@ -10,21 +12,35 @@ const REVIEW_API_URL = " http://localhost:3000/api/customer/add-review";
 
 class OrderHistory extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.submitReview = this.submitReview.bind(this);
+        console.log(props.user.user)
         this.state = {
-            user: this.props.user,
+            user: 0,
             show: false,
             rating: 3,
             comments: '',
             restaurant_id: 0,
-            orders: [],
+            orders: []
             //lastOrder: []
-        }  
+        }
     }
 
     componentDidMount() {
-        UserService.getOrders(4).then(
+        //console.log(this.state.user);
+
+        AuthService.getCurrentUser().then(
+            response => { 
+            this.setState({
+                user: response.user
+            });
+            }).catch(
+                error => {
+                    console.log(error);
+                }
+            )
+        
+        UserService.getOrders(this.state.user).then(
             response => {
                 console.log(response);
                 this.setState({
@@ -75,6 +91,22 @@ class OrderHistory extends React.Component {
         this.closeModal(item);
     }
 
+    render() {
+        return (
+            <div>
+                <br />
+                <h1>Your Previous Orders</h1>
+                <br />
+                <CardColumns>
+                    {this.state.orders.map((item, index) => (
+                        <Orders order={item} />
+                    ))}
+                </CardColumns>
+                <Button onClick={() => { console.log(this.props.user.user) }}>Post</Button>
+            </div>
+        )
+    }
+    /*
     render() {
         return (
             <div>
@@ -136,7 +168,7 @@ class OrderHistory extends React.Component {
 
             </div>
         )
-    }
+    }*/
 }
 
 export default withRouter(OrderHistory);

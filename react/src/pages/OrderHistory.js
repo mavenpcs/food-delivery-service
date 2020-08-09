@@ -3,21 +3,14 @@ import UserService from "../services/user.service";
 import ReviewService from "../services/review.service";
 import AuthService from "../services/auth.service";
 import Orders from "../components/Order";
-import axios from "axios";
 import { withRouter } from "react-router";
-import { Button, Card, CardColumns, Col, Form, Jumbotron, Modal, Row } from "react-bootstrap";
-import StarRating from "react-star-ratings";
-
-const REVIEW_API_URL = " http://localhost:3000/api/customer/add-review";
+import { CardColumns  } from "react-bootstrap";
 
 class OrderHistory extends React.Component {
     constructor(props) {
         super(props);
         this.submitReview = this.submitReview.bind(this);
-        console.log(props)
-        console.log(props.user)
         this.state = {
-            user: props,
             show: false,
             rating: 3,
             comments: '',

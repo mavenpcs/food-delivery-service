@@ -1,8 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
 const API_URL = "http://localhost:3000/api/cart/";
+const API_CHECKOUT_URL = "http://localhost:3000/api/customer/checkout"
 
-class Cart {
+class CartService {
     addToCart(cart_id, food_id) {
         return axios.post(API_URL + "addtocart", {
             cart_id,
@@ -11,9 +12,19 @@ class Cart {
     }
 
     removeFromCart(cart_id, food_id) {
-        return axois.delete(API_URL + "removefromcart", {
+        return axios.delete(API_URL + "removefromcart", {
             cart_id,
             food_id
         });
     }
+
+    checkOut(userid, restaurantid, foods) {
+        return axios.post(API_CHECKOUT_URL, {
+            userid: userid,
+            restaurantid: restaurantid,
+            foods: foods
+        });
+    }
 }
+
+export default new CartService();

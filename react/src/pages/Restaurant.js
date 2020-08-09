@@ -51,7 +51,7 @@ class Restaurant extends React.Component {
                     <Jumbotron>
                         <h1>{this.props.restaurant.name}</h1>
                         <p>{this.props.restaurant.address}</p>
-                        <p>{this.props.restaurant.deliveryfee}</p>
+                        <p>Delivery fee: ${this.props.restaurant.deliveryfee}</p>
                     </Jumbotron>
                 ) : null}
                 <br/>

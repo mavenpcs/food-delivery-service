@@ -21,6 +21,10 @@ module.exports = (sequelize, Sequelize) => {
                 key: 'id'
             },
             allowNull: false,
+        },
+        reviewed: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: 0
         }
     });
 

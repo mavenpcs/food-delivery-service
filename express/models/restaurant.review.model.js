@@ -6,6 +6,14 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
             autoIncrement: true
         },
+        order_id: {
+            type: Sequelize.INTEGER,
+            references: {
+                model: 'orders',
+                key: 'id'
+            },
+            allowNull: false
+        },
         restaurant_id: {
             type: Sequelize.INTEGER,
             references: {

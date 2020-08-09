@@ -10,14 +10,16 @@ class Cart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            shoppingCart: this.props.shoppingCart,
+            shoppingCart: JSON.parse(localStorage.getItem('shoppingCart')),
             subTotal: 0,
             isLoggedIn: false,
             isLoaded: false,
             user: 0
         }
-        this.calculatePrice();
-        console.log(this.props.restaurant);
+        if (this.state.shoppingCart) {
+            this.calculatePrice();
+        }
+
     }
 
     componentDidMount() {
@@ -35,14 +37,11 @@ class Cart extends React.Component {
                 isLoaded: true
             });
         }
-        console.log(user);
-        console.log(this.state)
     }
 
     calculatePrice() {
         for (let i = 0; i < this.state.shoppingCart.length; i++) {
             this.state.subTotal += this.state.shoppingCart[i].price;
-            console.log(this.state.subTotal);
         }
     }
 
@@ -53,9 +52,12 @@ class Cart extends React.Component {
     }
 
     render() {
-        console.log(this.state.shoppingCart);
         const shoppingCart = this.state.shoppingCart;
         const subTotal = this.state.subTotal;
+        let deliveryFee = 0;
+        if (shoppingCart) {
+            deliveryFee = JSON.parse(localStorage.getItem('restaurant')).deliveryfee;
+        }
         return (
             <div>
                 <h2 className="h2  ml-4 my-5 green">Your Shopping Cart</h2>
@@ -81,7 +83,7 @@ class Cart extends React.Component {
                             <div className="col-sm ">
                                 <div className="my-lg-5">
                                     <PriceDisplay subTotal={subTotal.toFixed(2)}
-                                                  deliveryFee={this.props.restaurant.deliveryfee}/>
+                                                  deliveryFee={deliveryFee}/>
                                     <Button className="btn btn-light roundedCorners" onClick={() => {
                                         this.checkOut()
                                     }}>Checkout</Button>

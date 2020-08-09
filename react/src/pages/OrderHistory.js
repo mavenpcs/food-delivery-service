@@ -17,19 +17,23 @@ class OrderHistory extends React.Component {
         console.log(props)
         console.log(props.user)
         this.state = {
-            user: this.props.match.params.id,
+            user: props,
             show: false,
             rating: 3,
             comments: '',
             restaurant_id: 0,
-            orders: []
+            orders: [],
+            isLoggedIn: false,
+            isLoaded: false,
+            user: 0
             //lastOrder: []
         }
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.id);
-        this.setState({ user: this.props.match.params.id });
+        //console.log(this.props.match.params.id);
+        //this.setState({ user: this.props.match.params.id });
+
         //console.log(this.state.user);
         /*
         AuthService.getCurrentUser().then(
@@ -44,7 +48,23 @@ class OrderHistory extends React.Component {
             }
         )
         */
-        UserService.getOrders(this.state.user).then(
+        const user = AuthService.getCurrentUser();
+        if (user) {
+            this.setState({
+                isLoggedIn: true,
+                isLoaded: true,
+                user: user.id
+            });
+        }
+        else {
+            this.setState({
+                isLoggedIn: false,
+                isLoaded: true
+            });
+        }
+        console.log(user);
+
+        UserService.getOrders(user.id).then(
             response => {
                 console.log(response);
                 this.setState({
@@ -106,7 +126,6 @@ class OrderHistory extends React.Component {
                         <Orders order={item} />
                     ))}
                 </CardColumns>
-                <Button onClick={() => { console.log(this.props.user.user) }}>Post</Button>
             </div>
         )
     }

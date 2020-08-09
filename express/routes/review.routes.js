@@ -22,7 +22,7 @@ module.exports = function(app) {
     );
 
     app.get(
-        API_URL + 'get-review',
+        API_URL + 'get-review/:restaurantid',
         controller.getRandomReview
     );
 

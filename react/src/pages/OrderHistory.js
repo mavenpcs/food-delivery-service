@@ -17,7 +17,6 @@ class OrderHistory extends React.Component {
             isLoggedIn: false,
             isLoaded: false,
             user: 0
-            //lastOrder: []
         }
     }
 
@@ -29,6 +28,17 @@ class OrderHistory extends React.Component {
                 isLoaded: true,
                 user: user.id
             });
+            UserService.getOrders(user.id).then(
+                response => {
+                    this.setState({
+                        orders: JSON.parse(response.request.response)
+                    })
+                }
+            ).catch(
+                error => {
+                    console.log(error);
+                }
+            )
         }
         else {
             this.setState({
@@ -36,27 +46,12 @@ class OrderHistory extends React.Component {
                 isLoaded: true
             });
         }
-        console.log(user);
 
-        UserService.getOrders(user.id).then(
-            response => {
-                console.log(response);
-                this.setState({
-                    orders: JSON.parse(response.request.response)
-                })
-            }
-        ).catch(
-            error => {
-                console.log(error);
-            }
-        )
+
     }
 
     render() {
         const orders = this.state.orders;
-        console.log(this.state.orders);
-        console.log(orders);
-        console.log(orders.length);
         return (
             <div>
                 <h1 className="h2  ml-4 my-5 green">Your Previous Orders</h1>

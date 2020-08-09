@@ -1,14 +1,17 @@
 import axios from "axios";
+import authHeader from './auth-header';
 
 const REVIEW_API_URL = "http://localhost:3000/api/customer/add-review";
 
 class ReviewService {
-    addReview(restaurantid, starRating, comments) {
+    addReview(restaurantid, rating , comments) {
         return axios.post(REVIEW_API_URL, {
-            restaurantid,
-            starRating,
-            comments
-        });
+            restaurantid: restaurantid,
+            rating: rating ,
+            comments: comments
+        },
+        { headers: authHeader() }
+        );
     }
 }
 

@@ -20,15 +20,14 @@ module.exports = (sequelize, Sequelize) => {
                 model: 'food',
                 key: 'id'
             },
-            allowNull: false,
+            allowNull: false
         },
         food_price: {
             type: Sequelize.FLOAT,
             references: {
                 model: 'food',
                 key: 'price'
-            },
-            allowNull: false
+            }
         }
     });
 

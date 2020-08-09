@@ -41,8 +41,31 @@ Please check out the following pages via their link:
 - Get all foods by restaurant id (GET): http://localhost:3000/api/vendor/foods/:restaurantid
     - Parameter: restaurantid
 - Add review & rating (POST): http://localhost:3000/api/customer/add-review
-    - Parameters: restaurantid, rating, comments
+    - Parameters: orderid, restaurantid, rating, comments
 - Get random review (GET): http://localhost:3000/api/customer/get-review
     - Parameter: restaurantid
 - Get rating (GET): http://localhost:3000/api/customer/get-rating
     - Parameter: restaurantid
+- Check out (POST): http://localhost:3000/api/customer/checkout
+    - Parameters: userid, restaurantid, array of food objects (id, price)
+    - Example: 
+    {
+        "userid": 1,
+        "restaurantid": 1,
+        "foods": [
+            {
+                "id": 1,
+                "price": 21.99
+            },
+            {
+                "id": 2,
+                "price": 5.99
+            },
+            {
+                "id": 3,
+                "price": 3.99
+            }
+        ]
+    }
+
+- Get order history (GET): http://localhost:3000/api/customer/get-orders/:userid

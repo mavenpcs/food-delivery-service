@@ -3,6 +3,7 @@ import {withRouter} from "react-router";
 import {Button, Card, CardDeck, Jumbotron, Modal} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import UserService from "../services/user.service";
+import ReviewService from "../services/review.service";
 
 class Restaurant extends React.Component {
 
@@ -11,6 +12,8 @@ class Restaurant extends React.Component {
         this.state = {
             show: false,
             isLoadingMenu: true,
+            review: [],
+            reviewComment: "",
             menu: []
         }
 
@@ -32,6 +35,23 @@ class Restaurant extends React.Component {
                     console.log(error);
                 }
             )
+            console.log(this.props.restaurant.id);
+            ReviewService.getReview(this.props.restaurant.id).then(
+                response => {
+                    console.log(response);
+                    this.setState({
+                        review: JSON.parse(response.request.response),
+                        reviewComment: this.state.review.comments
+                    })
+                    console.log(response);
+                    console.log(this.state.review);
+                    console.log(this.state.reviewComment);
+                }
+            ).catch(
+                error => {
+                    console.log(error);
+                }
+            )
         }
     }
 
@@ -45,13 +65,19 @@ class Restaurant extends React.Component {
     }
 
     render() {
+        const reviews = this.state.review;
         return (
             <div>
                 {this.props.restaurant ? (
                     <Jumbotron>
                         <h1>{this.props.restaurant.name}</h1>
                         <p>{this.props.restaurant.address}</p>
-                        <p>{this.props.restaurant.deliveryfee}</p>
+                        <p>Delivery fee: ${this.props.restaurant.deliveryfee}</p>
+                        <br></br>
+                        {reviews.length > 0 ? (
+                            <p>Reviews: {this.state.reviewComment}</p>
+                            ): <p></p>
+                        }
                     </Jumbotron>
                 ) : null}
                 <br/>

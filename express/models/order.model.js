@@ -14,17 +14,17 @@ module.exports = (sequelize, Sequelize) => {
             },
             allowNull: false
         },
-        restaurant_name: {
-            type: Sequelize.STRING,
+        restaurant_id: {
+            type: Sequelize.INTEGER,
             references: {
                 model: 'restaurant',
-                key: 'name'
+                key: 'id'
             },
             allowNull: false,
         },
-        date: {
-            type: Sequelize.DATE,
-            allowNull: false,
+        reviewed: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: 0
         }
     });
 

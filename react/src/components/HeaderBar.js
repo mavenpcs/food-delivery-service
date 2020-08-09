@@ -1,17 +1,22 @@
 import React from 'react';
-
-
 import {Navbar} from "react-bootstrap";
 import logo from '../images/DelishLogo.png'
 import AuthService from '../services/auth.service'
 import Button from "react-bootstrap/Button";
 
-
 class HeaderBar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirectLink: false
+        }
+    }
+
     logOut() {
         AuthService.logout();
         window.location.reload();
     }
+
 
     render() {
         return (
@@ -35,6 +40,8 @@ class HeaderBar extends React.Component {
                         <div className="navbar-text mr-sm-2">
                             {this.props.user.user.firstname}
                         </div>
+                        <Button className="btn btn-light roundedCorners my-2 my-sm-0" href="/cart">Cart</Button>
+                        <Button className="btn btn-light roundedCorners my-2 my-sm-0" href="/orderhistory">Past Orders</Button>
                         <Button className="btn btn-light roundedCorners my-2 my-sm-0" onClick={() => {
                             this.logOut()
                         }}>

@@ -1,5 +1,7 @@
 /react/node_modules
 /react/build
 .dockerignore
-Dockerfile-devel
-Dockerfile-web
+Dockerfile-express
+Dockerfile-react
+Dockerfile-mysql
+Dockerfile-prod

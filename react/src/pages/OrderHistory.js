@@ -14,9 +14,10 @@ class OrderHistory extends React.Component {
     constructor(props) {
         super(props);
         this.submitReview = this.submitReview.bind(this);
-        console.log(props.user.user)
+        console.log(props)
+        console.log(props.user)
         this.state = {
-            user: 0,
+            user: this.props.match.params.id,
             show: false,
             rating: 3,
             comments: '',
@@ -27,19 +28,22 @@ class OrderHistory extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.match.params.id);
+        this.setState({ user: this.props.match.params.id });
         //console.log(this.state.user);
-
+        /*
         AuthService.getCurrentUser().then(
             response => { 
-            this.setState({
-                user: response.user
-            });
-            }).catch(
-                error => {
-                    console.log(error);
-                }
-            )
-        
+                this.setState({
+                    user: response.user
+                });
+            }
+        ).catch(
+            error => {
+                console.log(error);
+            }
+        )
+        */
         UserService.getOrders(this.state.user).then(
             response => {
                 console.log(response);

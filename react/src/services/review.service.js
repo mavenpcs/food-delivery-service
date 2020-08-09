@@ -19,9 +19,7 @@ class ReviewService {
     getReview(restaurantid) {
         return axios.get(GET_REVIEW_API_URL, {
             restaurantid: restaurantid
-        },
-            { headers: authHeader() }
-        );
+        });
     }
 }
 

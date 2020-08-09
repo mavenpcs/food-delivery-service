@@ -35,6 +35,7 @@ class Restaurant extends React.Component {
                     console.log(error);
                 }
             )
+            console.log(this.props.restaurant.id);
             ReviewService.getReview(this.props.restaurant.id).then(
                 response => {
                     console.log(response);

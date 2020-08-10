@@ -24,7 +24,6 @@ class Restaurant extends React.Component {
         if (this.props.restaurant) {
             UserService.getMenu(this.props.restaurant.id).then(
                 response => {
-                    console.log(response);
                     this.setState({
                         isLoadingMenu: false,
                         menu: JSON.parse(response.request.response)
@@ -35,17 +34,18 @@ class Restaurant extends React.Component {
                     console.log(error);
                 }
             )
-            console.log(this.props.restaurant.id);
             ReviewService.getReview(this.props.restaurant.id).then(
                 response => {
-                    console.log(response);
                     this.setState({
                         review: JSON.parse(response.request.response),
                         reviewComment: this.state.review.comments
                     })
+<<<<<<< react/src/pages/Restaurant.js
                     console.log(response);
                     console.log(this.state.review);
                     console.log(this.state.review[0].comments);
+=======
+>>>>>>> react/src/pages/Restaurant.js
                 }
             ).catch(
                 error => {

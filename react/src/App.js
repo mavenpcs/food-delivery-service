@@ -57,14 +57,20 @@ class App extends React.Component {
         this.setState(prevState => ({
             shoppingCart: [...prevState.shoppingCart, item]
         }), () => {
-            console.log(this.state.shoppingCart);
+
+            localStorage.setItem('shoppingCart', JSON.stringify(this.state.shoppingCart));
         });
+
     }
 
     selectRestaurant(restaurant) {
-        this.setState({
-            restaurant: restaurant
-        })
+        this.setState(prevState => ({
+            restaurant: restaurant,
+            shoppingCart: []
+        }), () => {
+            localStorage.removeItem("shoppingCart");
+            localStorage.setItem('restaurant', JSON.stringify(this.state.restaurant));
+        });
     }
 
     render() {

@@ -21,32 +21,32 @@ class Restaurant extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.restaurant) {
-            UserService.getMenu(this.props.restaurant.id).then(
-                response => {
-                    this.setState({
-                        isLoadingMenu: false,
-                        menu: JSON.parse(response.request.response)
-                    })
-                }
-            ).catch(
-                error => {
-                    console.log(error);
-                }
-            )
-            ReviewService.getReview(this.props.restaurant.id).then(
-                response => {
-                    this.setState({
-                        review: JSON.parse(response.request.response),
-                        reviewComment: this.state.review.comments
-                    })
-                }
-            ).catch(
-                error => {
-                    console.log(error);
-                }
-            )
-        }
+        const restaurant = JSON.parse(localStorage.getItem("restaurant"));
+        UserService.getMenu(restaurant.id).then(
+            response => {
+                this.setState({
+                    isLoadingMenu: false,
+                    menu: JSON.parse(response.request.response)
+                })
+            }
+        ).catch(
+            error => {
+                console.log(error);
+            }
+        )
+        ReviewService.getReview(restaurant.id).then(
+            response => {
+                this.setState({
+                    review: JSON.parse(response.request.response),
+                    reviewComment: this.state.review.comments
+                })
+            }
+        ).catch(
+            error => {
+                console.log(error);
+            }
+        )
+
     }
 
     handleModal() {
@@ -60,20 +60,20 @@ class Restaurant extends React.Component {
 
     render() {
         const reviews = this.state.review;
+        const restaurant = JSON.parse(localStorage.getItem("restaurant"));
         return (
             <div>
-                {this.props.restaurant ? (
                     <Jumbotron>
-                        <h1>{this.props.restaurant.name}</h1>
-                        <p>{this.props.restaurant.address}</p>
-                        <p>Delivery fee: ${this.props.restaurant.deliveryfee}</p>
+                        <h1>{restaurant.name}</h1>
+                        <p>{restaurant.address}</p>
+                        <p>Delivery fee: ${restaurant.deliveryfee}</p>
                         <br></br>
                         {reviews.length > 0 ? (
                             <p>Reviews: {this.state.review[0].comments}</p>
-                            ): <p></p>
+                        ) : <p></p>
                         }
                     </Jumbotron>
-                ) : null}
+
                 <br/>
                 <h2 className="green">Menu</h2>
 

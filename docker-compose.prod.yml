@@ -3,9 +3,6 @@ version: '3'
 services:
   
   mysql:
-    build:
-      context: .
-      dockerfile: Dockerfile-mysql
     image: "mariadb:latest"
     restart: always
     environment:

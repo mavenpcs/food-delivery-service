@@ -62,7 +62,7 @@ exports.getOrders = (req, res) => {
                         "restaurant_id": order.restaurant_id,
                         "restaurant_name": restaurantName.name,
                         "subtotal": parseFloat(subtotal.toFixed(2)),
-                        "date": moment(order.createdAt).format('MMMM Do YYYY, h:mm:ss a'),
+                        "date": moment(order.createdAt).format('MMMM Do YYYY'),
                         "reviewed": (order.reviewed == 1) ? true : false
                     };
                     orderHistory.push(orderItem);

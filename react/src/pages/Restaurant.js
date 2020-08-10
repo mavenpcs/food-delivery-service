@@ -40,12 +40,6 @@ class Restaurant extends React.Component {
                         review: JSON.parse(response.request.response),
                         reviewComment: this.state.review.comments
                     })
-<<<<<<< react/src/pages/Restaurant.js
-                    console.log(response);
-                    console.log(this.state.review);
-                    console.log(this.state.review[0].comments);
-=======
->>>>>>> react/src/pages/Restaurant.js
                 }
             ).catch(
                 error => {

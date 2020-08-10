@@ -39,7 +39,7 @@ class App extends React.Component {
                 isLoaded: true,
                 user: user
             });
-            if (user.roles == "ROLE_VENDOR") {
+            if (user.roles === "ROLE_VENDOR") {
                 this.setState({
                     isVendor: true
                 })

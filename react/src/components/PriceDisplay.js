@@ -9,10 +9,10 @@ class SearchBar extends React.Component {
 
         return (
             <div>
-                <div><p>Subtotal: {subTotal}</p></div>
-                <div><p>Delivery Fee: {deliveryFee}</p></div>
-                <div><p>Taxes: {taxes}</p></div>
-                <div><p>Total: {total}</p></div>
+                <div><p>Subtotal: ${subTotal}</p></div>
+                <div><p>Delivery Fee: ${deliveryFee}</p></div>
+                <div><p>Taxes (5% GST only): ${taxes}</p></div>
+                <div><p>Total: ${total}</p></div>
             </div>
         )
     }

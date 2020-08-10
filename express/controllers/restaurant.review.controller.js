@@ -48,7 +48,7 @@ exports.addReview = (req, res) => {
 exports.getRandomReview = (req, res) => {
     RestaurantReview.findAll({
             where: {
-                restaurant_id: req.body.restaurantid
+                restaurant_id: req.params.restaurantid
             },
             order: [[db.sequelize.literal('rand()')]],
             limit: 1,

@@ -51,18 +51,19 @@ exports.getOrders = (req, res) => {
             }).then(subtotal => {
                 // Find restaurant by restaurant_id in the order
                 Restaurant.findOne({
-                    attributes: ['name'],
+                    attributes: ['name', 'deliveryfee'],
                     where: {
                         id: order.restaurant_id
                     }
-                }).then(restaurantName => {
+                }).then(restaurantRecord => {
                     // Construct an orderItem object
                     let orderItem = {
                         "id": order.id,
                         "restaurant_id": order.restaurant_id,
-                        "restaurant_name": restaurantName.name,
-                        "subtotal": parseFloat(subtotal.toFixed(2)),
-                        "date": moment(order.createdAt).format('MMMM Do YYYY, h:mm:ss a'),
+                        "restaurant_name": restaurantRecord.name,
+                        "total": parseFloat(((subtotal + restaurantRecord.deliveryfee) 
+                        * 1.05).toFixed(2)),
+                        "date": moment(order.createdAt).format('MMMM Do YYYY'),
                         "reviewed": (order.reviewed == 1) ? true : false
                     };
                     orderHistory.push(orderItem);

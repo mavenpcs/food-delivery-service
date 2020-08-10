@@ -72,12 +72,12 @@ class Cart extends React.Component {
                                                 {item.name}
                                             </div>
                                             <div className="col">
-                                                {item.price}
+                                                ${item.price}
                                             </div>
                                         </div>
                                     ))}
                                 </div>
-                                <h3 className="green">Subtotal: {subTotal.toFixed(2)}</h3>
+                                <h3 className="green">Subtotal: ${subTotal.toFixed(2)}</h3>
                             </div>
 
                             <div className="col-sm ">

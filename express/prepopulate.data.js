@@ -22,42 +22,65 @@ const fixtures = [
   {
     model: 'appuser',
     data: {
-      id: 1,
-      username: 'vendor1',
+      username: 'jchurch',
       password: bcrypt.hashSync('12345678', 8),
       firstname: 'James',
-      lastname: 'Smith',
-      email: 'test@abc.com',
-      phone: '12345678',
-      address: '123 Fancy Dr',
+      lastname: 'Church',
+      email: 'jchurch@vendor.com',
+      phone: '6046885225',
+      address: '3308 Ash St, Vancouver',
       roles: [2]
     }
   },
   {
     model: 'appuser',
     data: {
-      id: 2,
-      username: 'vendor2',
+      username: 'keldan',
       password: bcrypt.hashSync('12345678', 8),
-      firstname: 'Daniel',
-      lastname: 'Han',
-      email: 'test2@abc.com',
-      phone: '12345678',
-      address: '100 Some St',
+      firstname: 'Kelvin',
+      lastname: 'Dan',
+      email: 'keldan@vendor.com',
+      phone: '6046892577',
+      address: '122 Walter Hardwick Ave, Vancouver',
       roles: [2]
     }
   },
   {
     model: 'appuser',
     data: {
-      id: 3,
-      username: 'customer',
+      username: 'khudson',
+      password: bcrypt.hashSync('12345678', 8),
+      firstname: 'Kayleigh',
+      lastname: 'Hudson',
+      email: 'khudson@vendor.com',
+      phone: '6047313240',
+      address: '563 Union St, Vancouver',
+      roles: [2]
+    }
+  },
+  {
+    model: 'appuser',
+    data: {
+      username: 'tak93',
+      password: bcrypt.hashSync('12345678', 8),
+      firstname: 'Takuya',
+      lastname: 'Tanahara',
+      email: 'tak93@vendor.com',
+      phone: '6046886490',
+      address: '1949 Comox St, Vancouver',
+      roles: [2]
+    }
+  },
+  {
+    model: 'appuser',
+    data: {
+      username: 'kcall',
       password: bcrypt.hashSync('12345678', 8),
       firstname: 'Karen',
       lastname: 'Call',
       email: 'themanager@abc.com',
-      phone: '12345678',
-      address: '123 Calmdown Ave',
+      phone: '6042662522',
+      address: '431 Calmdown Ave, Surrey',
       roles: [1]
     }
   },
@@ -65,9 +88,9 @@ const fixtures = [
     model: 'restaurant',
     data: {
       user_id: 1,
-      name: 'Test Restaurant 1',
-      address: '123 Test Ave',
-      deliveryfee: 2.50,
+      name: "Church's Chicken",
+      address: '4375 North Rd, Burnaby',
+      deliveryfee: 2.49,
       rating: 3
     }
   },
@@ -75,9 +98,29 @@ const fixtures = [
     model: 'restaurant',
     data: {
       user_id: 2,
-      name: 'Test Restaurant 2',
-      address: '100 Test Dr',
-      deliveryfee: 2.00,
+      name: "Danny's Mexican Restaurant",
+      address: '1101 Austin Ave, Coquitlam',
+      deliveryfee: 2.99,
+      rating: 2
+    }
+  },
+  {
+    model: 'restaurant',
+    data: {
+      user_id: 3,
+      name: 'Pizza Hot',
+      address: '2707 E. Hastings St, Vancouver',
+      deliveryfee: 3.49,
+      rating: 5
+    }
+  },
+  {
+    model: 'restaurant',
+    data: {
+      user_id: 4,
+      name: 'Itshoni Sushi',
+      address: '5228 Hollyfield Ave, Richmond',
+      deliveryfee: 1.99,
       rating: 4
     }
   },
@@ -85,60 +128,200 @@ const fixtures = [
     model: 'food',
     data: {
       restaurant_id: 1,
-      category: 'Pizza',
-      name: 'Large Peperoni Pizza',
-      price: 21.99,
-      description: 'This is a large peperoni pizza.'
+      category: 'Sandwich',
+      name: 'Classic Chicken Sandwich Combo',
+      price: 11.75,
+      description: 'Served with a regular side and a drink.'
     }
   },
   {
     model: 'food',
     data: {
       restaurant_id: 1,
-      category: 'Hamburger',
-      name: 'BigMac',
-      price: 5.99,
-      description: 'This is a BigMac.'
+      category: 'Sandwich',
+      name: 'Tender Wrap Combo',
+      price: 9.25,
+      description: 'Choice of original or spicy chicken tender wrap served with a side and a drink.'
     }
   },
   {
     model: 'food',
     data: {
       restaurant_id: 1,
-      category: 'Japanese',
-      name: 'California Rolls',
-      price: 3.99,
-      description: 'This is california rolls.'
+      category: 'Chicken',
+      name: 'Chicken (4 pcs) Combo',
+      price: 14.75,
+      description: 'Assorted chicken including a biscuit, choice of side, and a drink.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 1,
+      category: 'Chicken',
+      name: 'Tenders (3 pcs) Combo',
+      price: 11.45,
+      description: 'Chicken tenders including a biscuit, choice of side, and a drink.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 1,
+      category: 'Chicken',
+      name: 'Hot Wings (5 pcs)',
+      price: 8.25,
+      description: 'Each order comes with five hot wings.'
     }
   },
   {
     model: 'food',
     data: {
       restaurant_id: 2,
+      category: 'Mexican',
+      name: 'Guacamole and Chips',
+      price: 7.95,
+      description: 'Homemade corn tortilla and avocado dip.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 2,
+      category: 'Mexican',
+      name: 'Nachos and Cheese',
+      price: 12.25,
+      description: 'Nachos and cheese served with pico de gallo.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 2,
+      category: 'Mexian',
+      name: 'Camarones a la Diabla (9 pcs)',
+      price: 19.50,
+      description: 'Nine large peeled shrimp sauteed in a spicy sauce served with Mexican rice and green salad on the side.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 2,
+      category: 'Mexian',
+      name: 'Tacos Duros (2 pcs)',
+      price: 13.95,
+      description: 'Two homemade crispy corn tortillas filled with your choice of meat and vegetables.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 2,
+      category: 'Mexian',
+      name: '8" Quesadilla',
+      price: 14.95,
+      description: 'An eight-inch flour tortilla stuffed with cheese, shredded chicken, and ranchera salsa.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 3,
       category: 'Pizza',
-      name: 'Large Peperoni Pizza',
-      price: 21.99,
-      description: 'This is a large peperoni pizza.'
+      name: 'Create your Own',
+      price: 14.59,
+      description: 'Choose your favourite toppings.'
     }
   },
   {
     model: 'food',
     data: {
-      restaurant_id: 2,
-      category: 'Hamburger',
-      name: 'BigMac',
-      price: 5.99,
-      description: 'This is a BigMac.'
+      restaurant_id: 3,
+      category: 'Pizza',
+      name: 'Hawaiian Pizza',
+      price: 18.79,
+      description: 'Ham, pineapple and extra pizza mozzarella.'
     }
   },
   {
     model: 'food',
     data: {
-      restaurant_id: 2,
+      restaurant_id: 3,
+      category: 'Pizza',
+      name: "Pepperoni Lover's",
+      price: 18.79,
+      description: 'Double pepperoni and extra pizza mozzarella.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 3,
+      category: 'Pizza',
+      name: "Meat Lover's",
+      price: 18.79,
+      description: 'Pepperoni, Italian sausage, mild sausage, beef topping, ham, bacon crumble and pizza mozzarella.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 3,
+      category: 'Pizza',
+      name: 'Canadian',
+      price: 18.69,
+      description: 'Pepperoni, bacon crumble, sliced mushrooms and pizza mozzarella.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 4,
       category: 'Japanese',
-      name: 'California Rolls',
-      price: 3.99,
-      description: 'This is california rolls.'
+      name: 'Nigiri Box',
+      price: 15.00,
+      description: 'Two-piece of yam and prawn tempura, five-piece sashimi, salad, rice, and your choice of chicken or beef teriyaki.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 4,
+      category: 'Japanese',
+      name: 'Salmon and Tuna Sashimi (8 pcs)',
+      price: 15.00,
+      description: 'One order comes with eight pieces of salmon and tuna sashimi.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 4,
+      category: 'Japanese',
+      name: 'Salmon Toro Sashimi (5 pcs)',
+      price: 10.00,
+      description: 'One order comes with five pieces.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 4,
+      category: 'Japanese',
+      name: 'Tiger Ebi Oishi',
+      price: 12.00,
+      description: 'Tiger Ebi, shiso pesto, and oishi sauce.'
+    }
+  },
+  {
+    model: 'food',
+    data: {
+      restaurant_id: 4,
+      category: 'Japanese',
+      name: 'Miso Ramen',
+      price: 9.00,
+      description: 'Miso ramen with bean sprouts.'
     }
   }
 ];

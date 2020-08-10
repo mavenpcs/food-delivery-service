@@ -61,20 +61,20 @@ const { sequelize } = require('./models/index');
 const initial = require('./prepopulate.data');
 
 // For development
-db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(() => {
-  db.sequelize.sync({ force: true })
-  .then(() => {
-    db.sequelize.query('SET FOREIGN_KEY_CHECKS = 1')
-    .then(() => {
-      console.log('Drop and Resync DB');
-      initial();
-    }, (err) => {
-      console.log(err);
-    })
-  });
-}, (err) => {
-  console.log(err);
-});
+// db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(() => {
+//   db.sequelize.sync({ force: true })
+//   .then(() => {
+//     db.sequelize.query('SET FOREIGN_KEY_CHECKS = 1')
+//     .then(() => {
+//       console.log('Drop and Resync DB');
+//       initial();
+//     }, (err) => {
+//       console.log(err);
+//     })
+//   });
+// }, (err) => {
+//   console.log(err);
+// });
 
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log('Drop and Resync DB');
@@ -82,6 +82,8 @@ db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(() => {
 // });
 
 // For production
-// db.sequelize.sync();
+db.sequelize.sync().then(() => {
+  initial();
+});
 
 module.exports = app;

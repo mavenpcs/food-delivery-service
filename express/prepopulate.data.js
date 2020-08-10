@@ -17,11 +17,14 @@ const fixtures = [
     data: {
       id: 2,
       name: 'vendor',
+
     }
   },
   {
     model: 'appuser',
+    keys: ['id'],
     data: {
+      id: 1,
       username: 'jchurch',
       password: bcrypt.hashSync('12345678', 8),
       firstname: 'James',
@@ -34,7 +37,9 @@ const fixtures = [
   },
   {
     model: 'appuser',
+    keys: ['id'],
     data: {
+      id: 2,
       username: 'keldan',
       password: bcrypt.hashSync('12345678', 8),
       firstname: 'Kelvin',
@@ -47,7 +52,9 @@ const fixtures = [
   },
   {
     model: 'appuser',
+    keys: ['id'],
     data: {
+      id: 3,
       username: 'khudson',
       password: bcrypt.hashSync('12345678', 8),
       firstname: 'Kayleigh',
@@ -60,7 +67,9 @@ const fixtures = [
   },
   {
     model: 'appuser',
+    keys: ['id'],
     data: {
+      id: 4,
       username: 'tak93',
       password: bcrypt.hashSync('12345678', 8),
       firstname: 'Takuya',
@@ -73,7 +82,9 @@ const fixtures = [
   },
   {
     model: 'appuser',
+    keys: ['id'],
     data: {
+      id: 5,
       username: 'kcall',
       password: bcrypt.hashSync('12345678', 8),
       firstname: 'Karen',
@@ -86,7 +97,9 @@ const fixtures = [
   },
   {
     model: 'restaurant',
+    keys: ['id'],
     data: {
+      id: 1,
       user_id: 1,
       name: "Church's Chicken",
       address: '4375 North Rd, Burnaby',
@@ -96,7 +109,9 @@ const fixtures = [
   },
   {
     model: 'restaurant',
+    keys: ['id'],
     data: {
+      id: 2,
       user_id: 2,
       name: "Danny's Mexican Restaurant",
       address: '1101 Austin Ave, Coquitlam',
@@ -106,7 +121,9 @@ const fixtures = [
   },
   {
     model: 'restaurant',
+    keys: ['id'],
     data: {
+      id: 3,
       user_id: 3,
       name: 'Pizza Hot',
       address: '2707 E. Hastings St, Vancouver',
@@ -116,7 +133,9 @@ const fixtures = [
   },
   {
     model: 'restaurant',
+    keys: ['id'],
     data: {
+      id: 4,
       user_id: 4,
       name: 'Itshoni Sushi',
       address: '5228 Hollyfield Ave, Richmond',
@@ -126,7 +145,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 1,
       restaurant_id: 1,
       category: 'Sandwich',
       name: 'Classic Chicken Sandwich Combo',
@@ -136,7 +157,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 2,
       restaurant_id: 1,
       category: 'Sandwich',
       name: 'Tender Wrap Combo',
@@ -146,7 +169,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 3,
       restaurant_id: 1,
       category: 'Chicken',
       name: 'Chicken (4 pcs) Combo',
@@ -156,7 +181,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 4,
       restaurant_id: 1,
       category: 'Chicken',
       name: 'Tenders (3 pcs) Combo',
@@ -166,7 +193,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 5,
       restaurant_id: 1,
       category: 'Chicken',
       name: 'Hot Wings (5 pcs)',
@@ -176,7 +205,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 6,
       restaurant_id: 2,
       category: 'Mexican',
       name: 'Guacamole and Chips',
@@ -186,7 +217,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 7,
       restaurant_id: 2,
       category: 'Mexican',
       name: 'Nachos and Cheese',
@@ -196,7 +229,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 8,
       restaurant_id: 2,
       category: 'Mexian',
       name: 'Camarones a la Diabla (9 pcs)',
@@ -206,7 +241,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 9,
       restaurant_id: 2,
       category: 'Mexian',
       name: 'Tacos Duros (2 pcs)',
@@ -216,7 +253,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 10,
       restaurant_id: 2,
       category: 'Mexian',
       name: '8" Quesadilla',
@@ -226,7 +265,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 11,
       restaurant_id: 3,
       category: 'Pizza',
       name: 'Create your Own',
@@ -236,7 +277,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 12,
       restaurant_id: 3,
       category: 'Pizza',
       name: 'Hawaiian Pizza',
@@ -246,7 +289,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 13,
       restaurant_id: 3,
       category: 'Pizza',
       name: "Pepperoni Lover's",
@@ -256,7 +301,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 14,
       restaurant_id: 3,
       category: 'Pizza',
       name: "Meat Lover's",
@@ -266,7 +313,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 15,
       restaurant_id: 3,
       category: 'Pizza',
       name: 'Canadian',
@@ -276,7 +325,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 16,
       restaurant_id: 4,
       category: 'Japanese',
       name: 'Nigiri Box',
@@ -286,7 +337,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 17,
       restaurant_id: 4,
       category: 'Japanese',
       name: 'Salmon and Tuna Sashimi (8 pcs)',
@@ -296,7 +349,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 18,
       restaurant_id: 4,
       category: 'Japanese',
       name: 'Salmon Toro Sashimi (5 pcs)',
@@ -306,7 +361,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 19,
       restaurant_id: 4,
       category: 'Japanese',
       name: 'Tiger Ebi Oishi',
@@ -316,7 +373,9 @@ const fixtures = [
   },
   {
     model: 'food',
+    keys: ['id'],
     data: {
+      id: 20,
       restaurant_id: 4,
       category: 'Japanese',
       name: 'Miso Ramen',

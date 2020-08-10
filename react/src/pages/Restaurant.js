@@ -3,6 +3,7 @@ import {withRouter} from "react-router";
 import {Button, Card, CardDeck, Jumbotron, Modal} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import UserService from "../services/user.service";
+import ReviewService from "../services/review.service";
 
 class Restaurant extends React.Component {
 
@@ -11,6 +12,8 @@ class Restaurant extends React.Component {
         this.state = {
             show: false,
             isLoadingMenu: true,
+            review: [],
+            reviewComment: "",
             menu: []
         }
 
@@ -21,10 +24,21 @@ class Restaurant extends React.Component {
         if (this.props.restaurant) {
             UserService.getMenu(this.props.restaurant.id).then(
                 response => {
-                    console.log(response);
                     this.setState({
                         isLoadingMenu: false,
                         menu: JSON.parse(response.request.response)
+                    })
+                }
+            ).catch(
+                error => {
+                    console.log(error);
+                }
+            )
+            ReviewService.getReview(this.props.restaurant.id).then(
+                response => {
+                    this.setState({
+                        review: JSON.parse(response.request.response),
+                        reviewComment: this.state.review.comments
                     })
                 }
             ).catch(
@@ -45,13 +59,19 @@ class Restaurant extends React.Component {
     }
 
     render() {
+        const reviews = this.state.review;
         return (
             <div>
                 {this.props.restaurant ? (
                     <Jumbotron>
                         <h1>{this.props.restaurant.name}</h1>
                         <p>{this.props.restaurant.address}</p>
-                        <p>{this.props.restaurant.deliveryfee}</p>
+                        <p>Delivery fee: ${this.props.restaurant.deliveryfee}</p>
+                        <br></br>
+                        {reviews.length > 0 ? (
+                            <p>Reviews: {this.state.review[0].comments}</p>
+                            ): <p></p>
+                        }
                     </Jumbotron>
                 ) : null}
                 <br/>
@@ -70,7 +90,7 @@ class Restaurant extends React.Component {
                                         {item.description}
                                     </Card.Text>
                                     <Card.Text>
-                                        {item.price}
+                                        ${item.price}
                                     </Card.Text>
                                 </Card.Body>
 

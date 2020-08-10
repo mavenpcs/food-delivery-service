@@ -39,7 +39,7 @@ class App extends React.Component {
                 isLoaded: true,
                 user: user
             });
-            if (user.roles == "ROLE_VENDOR") {
+            if (user.roles === "ROLE_VENDOR") {
                 this.setState({
                     isVendor: true
                 })
@@ -51,26 +51,27 @@ class App extends React.Component {
                 isLoaded: true
             });
         }
-
-
-
     }
 
     addtoCart(item) {
         this.setState(prevState => ({
             shoppingCart: [...prevState.shoppingCart, item]
         }), () => {
-            console.log(this.state.shoppingCart);
+
+            localStorage.setItem('shoppingCart', JSON.stringify(this.state.shoppingCart));
         });
+
     }
 
     selectRestaurant(restaurant) {
-        this.setState({
-            restaurant: restaurant
-        })
+        this.setState(prevState => ({
+            restaurant: restaurant,
+            shoppingCart: []
+        }), () => {
+            localStorage.removeItem("shoppingCart");
+            localStorage.setItem('restaurant', JSON.stringify(this.state.restaurant));
+        });
     }
-
-
 
     render() {
         const user = this.state
@@ -85,8 +86,8 @@ class App extends React.Component {
                         <Restaurant addToCart={this.addtoCart} restaurant={this.state.restaurant}/>
                     )} />
                     <Route exact path="/login" component={Login}/>
-                    <Route exact path="/register" component={Register}/>
-                    <Route exact path="/orderhistory" component={OrderHistory}/>
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/orderhistory" component={OrderHistory} />
                     <Route exact path="/myMenu" component={MyMenu}/>
                     <Route exact path="/cart" render={(props) => (
                         <Cart shoppingCart={this.state.shoppingCart} restaurant={this.state.restaurant}/>

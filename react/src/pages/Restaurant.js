@@ -45,7 +45,7 @@ class Restaurant extends React.Component {
                     })
                     console.log(response);
                     console.log(this.state.review);
-                    console.log(this.state.reviewComment);
+                    console.log(this.state.review[0].comments);
                 }
             ).catch(
                 error => {
@@ -75,7 +75,7 @@ class Restaurant extends React.Component {
                         <p>Delivery fee: ${this.props.restaurant.deliveryfee}</p>
                         <br></br>
                         {reviews.length > 0 ? (
-                            <p>Reviews: {this.state.reviewComment}</p>
+                            <p>Reviews: {this.state.review[0].comments}</p>
                             ): <p></p>
                         }
                     </Jumbotron>

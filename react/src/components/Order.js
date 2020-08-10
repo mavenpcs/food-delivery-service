@@ -63,6 +63,9 @@ class Order extends React.Component {
                     <Card.Body>
                         <Card.Title>{this.props.order.restaurant_name}</Card.Title>
                         <Card.Text>
+                            Order Date: {this.props.order.date}
+                        </Card.Text>
+                        <Card.Text>
                             Subtotal: ${this.props.order.subtotal}
                         </Card.Text>
                     </Card.Body>

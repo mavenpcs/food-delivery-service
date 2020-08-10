@@ -66,7 +66,7 @@ class Order extends React.Component {
                             Order Date: {this.props.order.date}
                         </Card.Text>
                         <Card.Text>
-                            Subtotal: ${this.props.order.subtotal}
+                            Total Paid: ${this.props.order.total}
                         </Card.Text>
                     </Card.Body>
                     <Button className="btn btn-light roundedCorners my-2 my-sm-0 align-bottom"

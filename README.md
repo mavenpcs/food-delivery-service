@@ -13,11 +13,14 @@ npm start (runs on localhost:8080)
 - docker-compose -f docker-compose.prod.yml build && docker-compose -f docker-compose.prod.yml up
 - React: localhost:1337
 
-# Pages To Be Implemented
-Please check out the following pages via their link:
-- Login: http://localhost:8080/login
-- Register: http://localhost:8080/register
-- Order History: http://localhost:8080/orderhistory
+# Pages
+Please check out the following pages
+- Home Page
+- Login
+- Register
+- Restaurants
+- Cart
+- Order History (Past Orders)
 
 # Endpoints
 ##### All

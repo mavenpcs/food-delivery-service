@@ -8,7 +8,23 @@ class HeaderBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirectLink: false
+            redirectLink: false,
+            isCustomer: false
+        }
+    }
+
+    componentDidMount() {
+        const user = AuthService.getCurrentUser();
+        if (user) {
+            if (user.roles == "ROLE_VENDOR") {
+                this.setState({
+                    isCustomer: false
+                })
+            } else {
+                this.setState({
+                    isCustomer: true
+                })
+            }
         }
     }
 
@@ -40,13 +56,18 @@ class HeaderBar extends React.Component {
                         <div className="navbar-text mr-sm-2">
                             {this.props.user.user.firstname}
                         </div>
-                        <Button className="btn btn-light roundedCorners my-2 my-sm-0" href="/cart">Cart</Button>
-                        <Button className="btn btn-light roundedCorners my-2 my-sm-0" href="/orderhistory">Past Orders</Button>
+                        {this.state.isCustomer ? (<span>
+                                                    <Button className="btn btn-light roundedCorners my-2 my-sm-0"
+                                                            href="/cart">Cart</Button>
+                        <Button className="btn btn-light roundedCorners my-2 my-sm-0"
+                                href="/orderhistory">Past Orders</Button>
+                        </span>) : (null)}
                         <Button className="btn btn-light roundedCorners my-2 my-sm-0" onClick={() => {
                             this.logOut()
                         }}>
                                 Log Out
                         </Button>
+
                     </span>
                 ) : null}
             </Navbar>

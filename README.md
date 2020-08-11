@@ -46,6 +46,7 @@ Please check out the following pages
     -  The Vendor can add a restaurant and food.
     -  The Customer can order ingredients for the selected menu.
 - Consequently, you must use the API under Vendors if you wish to add a restaurant and add foods to it.
+- You can only make orders on a customer account.
 - On each restaurant page, we show a random review.
 - Caveat: Your cart will be cleared automatically if you add an item from a different restaurant than the current one.
 

@@ -6,6 +6,7 @@ RUN chmod +x /wait.sh
 COPY express/package.json /package.json
 COPY express/package-lock.json /package-lock.json
 RUN cd / && npm ci --silent
+RUN cd / && npm install pm2@4.4.0 -g --silent
 RUN cd / && rm -rf /node_modules/node-sass && npm install node-sass # work around https://github.com/sass/node-sass/issues/1579
 EXPOSE 3000
 CMD /wait.sh mysql 3306 5000 \

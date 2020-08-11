@@ -32,6 +32,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        document.title = "DelishDelivery"
         const user = AuthService.getCurrentUser();
         if (user) {
             this.setState({

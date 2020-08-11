@@ -66,7 +66,7 @@ class Restaurant extends React.Component {
                     <Jumbotron>
                         <h1>{this.props.restaurant.name}</h1>
                         <p>{this.props.restaurant.address}</p>
-                        <p>Delivery fee: ${this.props.restaurant.deliveryfee}</p>
+                        <p>Delivery fee: ${this.props.restaurant.deliveryfee.toFixed(2)}</p>
                         <br></br>
                         {reviews.length > 0 ? (
                             <p>Reviews: {this.state.review[0].comments}</p>

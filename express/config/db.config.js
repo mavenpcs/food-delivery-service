@@ -1,8 +1,8 @@
 module.exports = {
-    HOST: 'mysql',
-    USER: 'root',
-    PASSWORD: 'Root12345',
-    DB: 'food_delivery',
+    HOST: process.env.DB_HOST || 'localhost',
+    USER: process.env.DB_USER || 'root',
+    PASSWORD: process.env.DB_PASSWORD || 'Root12345',
+    DB: process.env.DB_SCHEMA || 'food_delivery',
     dialect: 'mysql',
     define: {
         timestamps: true,

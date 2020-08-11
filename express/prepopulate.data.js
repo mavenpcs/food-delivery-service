@@ -382,6 +382,334 @@ const fixtures = [
       price: 9.00,
       description: 'Miso ramen with bean sprouts.'
     }
+  },
+  {
+    model: 'order',
+    keys: ['id'],
+    data: {
+      id: 1,
+      user_id: 5,
+      restaurant_id: 1,
+      reviewed: 1
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 1,
+      order_id: 1,
+      food_id: 1,
+      food_price: 11.75
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 2,
+      order_id: 1,
+      food_id: 2,
+      food_price: 9.25
+    }
+  },
+  {
+    model: 'order',
+    keys: ['id'],
+    data: {
+      id: 2,
+      user_id: 5,
+      restaurant_id: 2,
+      reviewed: 1
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 3,
+      order_id: 2,
+      food_id: 6,
+      food_price: 7.95
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 4,
+      order_id: 2,
+      food_id: 7,
+      food_price: 12.25
+    }
+  },
+  {
+    model: 'order',
+    keys: ['id'],
+    data: {
+      id: 3,
+      user_id: 5,
+      restaurant_id: 3,
+      reviewed: 1
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 5,
+      order_id: 3,
+      food_id: 11,
+      food_price: 14.59
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 6,
+      order_id: 3,
+      food_id: 12,
+      food_price: 18.79
+    }
+  },
+  {
+    model: 'order',
+    keys: ['id'],
+    data: {
+      id: 4,
+      user_id: 5,
+      restaurant_id: 4,
+      reviewed: 1
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 7,
+      order_id: 4,
+      food_id: 16,
+      food_price: 15.00
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 8,
+      order_id: 4,
+      food_id: 17,
+      food_price: 15.00
+    }
+  },
+  {
+    model: 'order',
+    keys: ['id'],
+    data: {
+      id: 5,
+      user_id: 5,
+      restaurant_id: 1,
+      reviewed: 1
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 9,
+      order_id: 5,
+      food_id: 3,
+      food_price: 14.75
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 10,
+      order_id: 5,
+      food_id: 4,
+      food_price: 11.45
+    }
+  },
+  {
+    model: 'order',
+    keys: ['id'],
+    data: {
+      id: 6,
+      user_id: 5,
+      restaurant_id: 2,
+      reviewed: 1
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 11,
+      order_id: 6,
+      food_id: 8,
+      food_price: 19.50
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 12,
+      order_id: 6,
+      food_id: 9,
+      food_price: 13.95
+    }
+  },
+  {
+    model: 'order',
+    keys: ['id'],
+    data: {
+      id: 7,
+      user_id: 5,
+      restaurant_id: 3,
+      reviewed: 1
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 13,
+      order_id: 7,
+      food_id: 13,
+      food_price: 18.79
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 14,
+      order_id: 7,
+      food_id: 14,
+      food_price: 18.79
+    }
+  },
+  {
+    model: 'order',
+    keys: ['id'],
+    data: {
+      id: 8,
+      user_id: 5,
+      restaurant_id: 4,
+      reviewed: 1
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 15,
+      order_id: 8,
+      food_id: 18,
+      food_price: 10.00
+    }
+  },
+  {
+    model: 'orderitem',
+    keys: ['id'],
+    data: {
+      id: 16,
+      order_id: 8,
+      food_id: 19,
+      food_price: 12.00
+    }
+  },
+  {
+    model: 'restaurantReview',
+    keys: ['id'],
+    data: {
+      id: 1,
+      order_id: 1,
+      restaurant_id: 1,
+      rating: 3,
+      comments: "Didn't let me speak to the manager!!"
+    }
+  },
+  {
+    model: 'restaurantReview',
+    keys: ['id'],
+    data: {
+      id: 2,
+      order_id: 2,
+      restaurant_id: 2,
+      rating: 5,
+      comments: "Manager was quick to show up :) Here is 5 stars!"
+    }
+  },
+  {
+    model: 'restaurantReview',
+    keys: ['id'],
+    data: {
+      id: 3,
+      order_id: 3,
+      restaurant_id: 3,
+      rating: 2,
+      comments: "Even the manager couldn't solve my problems."
+    }
+  },
+  {
+    model: 'restaurantReview',
+    keys: ['id'],
+    data: {
+      id: 4,
+      order_id: 4,
+      restaurant_id: 4,
+      rating: 5,
+      comments: "The manager was very polite and patient with my ignorance. Excellent service!"
+    }
+  },
+  {
+    model: 'restaurantReview',
+    keys: ['id'],
+    data: {
+      id: 5,
+      order_id: 5,
+      restaurant_id: 1,
+      rating: 2,
+      comments: "Where's the manager when I need him? 2 stars for terrible service!"
+    }
+  },
+  {
+    model: 'restaurantReview',
+    keys: ['id'],
+    data: {
+      id: 6,
+      order_id: 6,
+      restaurant_id: 2,
+      rating: 3,
+      comments: "The manager hung up on me."
+    }
+  },
+  {
+    model: 'restaurantReview',
+    keys: ['id'],
+    data: {
+      id: 7,
+      order_id: 7,
+      restaurant_id: 3,
+      rating: 3,
+      comments: "The manager didn't wanna talk to me. 3 stars at best."
+    }
+  },
+  {
+    model: 'restaurantReview',
+    keys: ['id'],
+    data: {
+      id: 8,
+      order_id: 8,
+      restaurant_id: 4,
+      rating: 5,
+      comments: "The first manager to not call me a Karen!"
+    }
   }
 ];
 

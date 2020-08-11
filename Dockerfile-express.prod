@@ -1,0 +1,12 @@
+FROM node:latest
+ENV NODE_ENV=production
+WORKDIR /code
+COPY wait.sh /wait.sh
+RUN chmod +x /wait.sh
+COPY express/package.json /package.json
+COPY express/package-lock.json /package-lock.json
+RUN cd / && npm ci --silent
+RUN cd / && rm -rf /node_modules/node-sass && npm install node-sass # work around https://github.com/sass/node-sass/issues/1579
+EXPOSE 3000
+CMD /wait.sh mysql 3306 5000 \
+  && npm run pm2

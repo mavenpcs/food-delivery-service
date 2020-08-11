@@ -22,24 +22,24 @@ Please check out the following pages
 
 # User Credentials (For Testing)
 - Vendor 1: Church’s Chicken
-Username: jchurch
-Password: 12345678
+    - Username: jchurch
+    - Password: 12345678
 
 - Vendor 2: Danny’s Mexican Restaurant
-Username: keldan
-Password: 12345678
+    - Username: keldan
+    - Password: 12345678
 
 - Vendor 3: Pizza Hot
-Username: khudson 
-Password: 12345678
+    - Username: khudson 
+    - Password: 12345678
 
 - Vendor 4: Itshoni Sushi
-Username: tak93
-Password: 12345678
+    - Username: tak93
+    - Password: 12345678
 
 - Customer 1
-Username: kcall
-Password: 12345678
+    - Username: kcall
+    - Password: 12345678
 
 # Notes
 - Unfortunately, we had to scrap the following features as a result of losing a group member:

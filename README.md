@@ -1,17 +1,15 @@
-# Run React from /react
-npm start (runs on localhost:8080)
+# Production Deployment
+- Run docker-compose down && docker system prune -all to make sure you are building on a clean slate
+- docker-compose -f docker-compose.prod.yml build && docker-compose -f docker-compose.prod.yml up
+- React: http://localhost:1337
+- Express: http://localhost:3000
 
-# Run Docker Container From the Root (Development Environment)
+# Development Deployment
 - Initial run: docker-compose build && docker-compose up
 - Onwards: docker-compose up
 
 - React: localhost:8080
 - Express: localhost:3000
-
-# Production Deployment
-- Run docker-compose down && docker system prune -f to make sure you are building on a clean slate
-- docker-compose -f docker-compose.prod.yml build && docker-compose -f docker-compose.prod.yml up
-- React: localhost:1337
 
 # Pages
 Please check out the following pages
@@ -22,6 +20,34 @@ Please check out the following pages
 - Cart
 - Order History (Past Orders)
 
+# User Credentials (For Testing)
+- Vendor 1: Church’s Chicken
+    - Username: jchurch
+    - Password: 12345678
+
+- Vendor 2: Danny’s Mexican Restaurant
+    - Username: keldan
+    - Password: 12345678
+
+- Vendor 3: Pizza Hot
+    - Username: khudson 
+    - Password: 12345678
+
+- Vendor 4: Itshoni Sushi
+    - Username: tak93
+    - Password: 12345678
+
+- Customer 1
+    - Username: kcall
+    - Password: 12345678
+
+# Notes
+- Unfortunately, we had to scrap the following features as a result of losing a group member:
+    -  The Vendor can add a restaurant and food.
+    -  The Customer can order ingredients for the selected menu.
+- Consequently, you must use the API under Vendors if you wish to add a restaurant and add foods to it.
+- We did not have the time to design and implement the database schema for Cart and hence, the items in the cart will only persist until the user logs out.
+
 # Endpoints
 ##### All
 - User registration (POST): http://localhost:3000/api/auth/signup
@@ -29,8 +55,9 @@ Please check out the following pages
 - User login (POST): http://localhost:3000/api/auth/signin
     - Parameters: username, password
 
+###### The endpoints for vendors are customers require x-access-token in their heading when sending data. The token is returned from the server when you make an API call to the 'signin' endpoint (the second one in the above list).
 ##### Vendors
-- Restaurant application (POST): http://localhost:3000/api/vendor/apply
+- Add a restaurant (POST): http://localhost:3000/api/vendor/apply
     - Parameters: userid, name, address, deliveryfee, rating (optional)
 - Add food (POST): http://localhost:3000/api/vendor/add-food
     - Parameters: restaurantid, category (optional), name, price, description

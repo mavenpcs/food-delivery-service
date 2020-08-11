@@ -48,7 +48,7 @@ class List extends React.Component {
                                         {item.address}
                                     </Card.Text>
                                     <Card.Text className="brown">
-                                        Delivery fee: ${item.deliveryfee}
+                                        Delivery fee: ${item.deliveryfee.toFixed(2)}
                                     </Card.Text>
                                     <Ratings
                                         rating={item.rating}

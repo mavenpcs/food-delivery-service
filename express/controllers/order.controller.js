@@ -61,8 +61,8 @@ exports.getOrders = (req, res) => {
                         "id": order.id,
                         "restaurant_id": order.restaurant_id,
                         "restaurant_name": restaurantRecord.name,
-                        "total": parseFloat(((subtotal + restaurantRecord.deliveryfee) 
-                        * 1.05).toFixed(2)),
+                        "total": parseFloat((subtotal + restaurantRecord.deliveryfee) 
+                        * 1.05).toFixed(2),
                         "date": moment(order.createdAt).format('MMMM Do YYYY'),
                         "reviewed": (order.reviewed == 1) ? true : false
                     };

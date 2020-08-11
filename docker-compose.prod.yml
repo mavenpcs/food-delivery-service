@@ -20,14 +20,21 @@ services:
     container_name: react
     build:
       context: .
-      dockerfile: Dockerfile-prod
+      dockerfile: Dockerfile-react.prod
     ports:
       - '1337:80'
 
   express:
     build:
       context: .
-      dockerfile: Dockerfile-express
+      dockerfile: Dockerfile-express.prod
+    environment:
+      DB_SCHEMA: food_delivery
+      DB_USER: root
+      DB_PASSWORD: Root12345
+      DB_HOST: mysql
+    depends_on: 
+      - mysql
     ports:
       - 3000:3000
     volumes:

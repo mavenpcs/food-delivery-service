@@ -90,7 +90,7 @@ class Restaurant extends React.Component {
                                         {item.description}
                                     </Card.Text>
                                     <Card.Text>
-                                        ${item.price}
+                                        ${item.price.toFixed(2)}
                                     </Card.Text>
                                 </Card.Body>
 

@@ -72,7 +72,7 @@ class Cart extends React.Component {
                                                 {item.name}
                                             </div>
                                             <div className="col">
-                                                ${item.price}
+                                                ${item.price.toFixed(2)}
                                             </div>
                                         </div>
                                     ))}
@@ -83,7 +83,7 @@ class Cart extends React.Component {
                             <div className="col-sm ">
                                 <div className="my-lg-5">
                                     <PriceDisplay subTotal={subTotal.toFixed(2)}
-                                                  deliveryFee={deliveryFee}/>
+                                                  deliveryFee={deliveryFee.toFixed(2)}/>
                                     <Button className="btn btn-light roundedCorners" onClick={() => {
                                         this.checkOut()
                                     }}>Checkout</Button>

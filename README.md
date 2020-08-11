@@ -46,7 +46,7 @@ Please check out the following pages
     -  The Vendor can add a restaurant and food.
     -  The Customer can order ingredients for the selected menu.
 - Consequently, you must use the API under Vendors if you wish to add a restaurant and add foods to it.
-- We did not have the time to design and implement the database schema for Cart and hence, the items in the cart will only persist until the user logs out.
+- On each restaurant page, we show a random review.
 
 # Endpoints
 ##### All
